@@ -1,4 +1,8 @@
+import Vue from 'vue'
 import Vuex from 'vuex'
+import MutationTypes from './mutationTypes'
+
+Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {

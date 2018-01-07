@@ -3,8 +3,17 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Plugins from './plugins'
+import iView from 'iview'
+import 'iview/dist/styles/iview.css' // 使用iview css
 
 Vue.config.productionTip = false
+
+// 全局引入iview组件
+Vue.use(iView)
+
+// 配置vue插件
+// Vue.use(Plugins)
 
 /* eslint-disable no-new */
 new Vue({
