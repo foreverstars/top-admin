@@ -7,13 +7,15 @@ import Plugins from './plugins'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css' // 使用iview css
 
+import iViewCom from './plugins/iviewCom'
+
 Vue.config.productionTip = false
 
 // 全局引入iview组件
-Vue.use(iView)
+// Vue.use(iView)
 
 // 配置vue插件
-// Vue.use(Plugins)
+Vue.use(Plugins)
 
 /* eslint-disable no-new */
 new Vue({

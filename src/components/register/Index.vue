@@ -5,67 +5,60 @@
     </div>
     <div class="register-info">
       <div class="register-info-l">
-        <h4>注册</h4>
-        <i-form :model="formInline" :rules="ruleInline" inline>
+        <h3>注册</h3>
+        <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
           <FormItem prop="user">
-            <Input type="text" :value.sync="formInline.user" placeholder="Username">
-              <Icon type="ios-person-outline" slot="prepend">
-              </Icon>
-            </Input>  
+              <Input type="text" size="large" v-model="formInline.user" placeholder="Username"  autocomplete="off">
+                  <Icon type="ios-person-outline" slot="prepend"></Icon>
+              </Input>
           </FormItem>
           <FormItem prop="password">
-            <Input type="password" :value.sync="formInline.password" placeholder="Password">
-              <Icon type="ios-locked-outline" slot="prepend"></Icon>
-            </Input>
+              <Input type="password" size="large" v-model="formInline.password" placeholder="Password" autocomplete="off">
+                  <Icon type="ios-locked-outline" slot="prepend"></Icon>
+              </Input>
           </FormItem>
           <FormItem>
-            <Button type="primary" @click="handleSubmit('formInline')">登录</Button>
+              <Button type="primary" @click="handleSubmit('formInline')">登陆</Button>
           </FormItem>
-        </i-form>
+        </Form>
       </div>
       <div class="register-info-r">
-
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import { Form } from 'iview'
-  export default {
+ export default {
     data () {
-      return {
-        formInline: {
-          user: '',
-          password: ''
-        },
-        ruleInline: {
-          user: [
-            {required: true, message: '请填写用户名', trigger: 'blur'}
-          ],
-          password: [
-            {required: true, message: '请填写密码', trigger: 'blur'},
-            {
-              type: 'string', min: 6, message: '密码长度不能小于6位',trigger: 'blur'
+        return {
+            formInline: {
+                user: '',
+                password: ''
+            },
+            ruleInline: {
+                user: [
+                    { required: true, message: 'Please fill in the user name', trigger: 'blur' }
+                ],
+                password: [
+                    { required: true, message: 'Please fill in the password.', trigger: 'blur' },
+                    { type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
+                ]
             }
-          ]
         }
-      }
     },
     methods: {
-      handleSubmit(name) {
-        this.$refs[name].validate((vaild) => {
-          if (vaild) {
-            this.$Message.success('提交成功!');
-          } else {
-            this.$Message.error('表单验证失败!');
-          }
-        })
-      }
-    },
-    created () {
+        handleSubmit(name) {
+            this.$refs[name].validate((valid) => {
+                if (valid) {
+                    this.$Message.success('Success!');
+                } else {
+                    this.$Message.error('Fail!');
+                }
+            })
+        }
     }
-  }
+ }
 </script>
 
 <style scoped lang="less">
@@ -99,9 +92,10 @@
         width:270px;
         height:250px;
         overflow:hidden;
-        h4{
+        h3{
           margin-top:20px;
           color:#37b5f9;
+          margin-bottom:10px;
         }
       }
     }

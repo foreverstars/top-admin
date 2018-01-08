@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "babel-plugin-import": "^1.6.3",
     "iview": "^2.8.0",
     "moment": "^2.20.1",
     "vue": "^2.5.2",
