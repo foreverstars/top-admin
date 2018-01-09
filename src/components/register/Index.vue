@@ -5,7 +5,7 @@
     </div>
     <div class="register-info">
       <div class="register-info-l">
-        <h3>注册</h3>
+        <h2>注册</h2>
         <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
           <FormItem prop="user">
               <Input type="text" size="large" v-model="formInline.user" placeholder="Username"  autocomplete="off">
@@ -18,11 +18,13 @@
               </Input>
           </FormItem>
           <FormItem>
-              <Button type="primary" @click="handleSubmit('formInline')">登陆</Button>
+              <Button type="primary" @click="handleSubmit('formInline')">注册</Button>
           </FormItem>
         </Form>
       </div>
       <div class="register-info-r">
+          <p>已有账号? <router-link to="/login">立即登录</router-link>        
+          </p>
       </div>
     </div>
   </div>
@@ -85,17 +87,33 @@
       width:480px;
       height:250px;
       background:#fff;
-      margin:80px auto;
+      margin:120px auto;
       padding-left:20px;
-      padding-right:20px;
+      overflow:hidden;
       .register-info-l{
-        width:270px;
+        width:250px;
         height:250px;
         overflow:hidden;
-        h3{
+        float:left;
+        h2{
           margin-top:20px;
           color:#37b5f9;
-          margin-bottom:10px;
+          margin-bottom:20px;
+        }
+      }
+      .register-info-r{
+        width:210px;
+        background:#f8f8f8;
+        height:250px;
+        float:left;
+        p{
+          line-height:20px;
+          text-align:center;
+          width:210px;
+          margin:100px auto;
+          a{
+            color:#37b5f9;
+          }
         }
       }
     }

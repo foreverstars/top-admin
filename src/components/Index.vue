@@ -2,9 +2,6 @@
   <div id="container">
     <div class="container-actions" v-if="noLogin">
       <router-link to="/login">登陆</router-link>
-      <router-link to="/register">注册</router-link>
-      <input type="text" />
-      <input type="password"/>
     </div>
     <div class="container-actions" v-else>
       <a>后台管理</a>

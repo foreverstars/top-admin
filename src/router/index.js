@@ -20,7 +20,7 @@ let routerConfig = {
       component: Register
     },
     {
-      path: 'login',
+      path: '/login',
       name: 'Login',
       component: Login
     },
