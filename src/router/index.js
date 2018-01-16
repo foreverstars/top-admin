@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store'
-import Index from '@/components/Index'
 import Register from '@/components/register/Index'
 import Login from '@/components/login/Index'
 import Home from '@/components/layout/Home'
+import Admin from '@/components/layout/Admin'
 
 Vue.use(Router)
 
@@ -26,12 +26,12 @@ let routerConfig = {
     },
     {
       path: '/home',
-      component: Index,
-      children: [{
-        name: 'Home',
-        path: '/',
-        component: Home
-      }]
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/admin',
+      component: Admin
     }
   ]
 }

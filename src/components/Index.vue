@@ -4,7 +4,7 @@
       <router-link to="/login">登陆</router-link>
     </div>
     <div class="container-actions" v-else>
-      <a>后台管理</a>
+      <router-link to="/admin">后台管理</router-link>
       <a>退出</a>
       <span>张三</span>
     </div>
@@ -16,7 +16,7 @@
   export default {
     data () {
       return {
-        noLogin: true
+        noLogin: false
       }
     }
   }
@@ -33,7 +33,6 @@
       a, span{
         float:right;
         display:block;
-        width:40px;
         margin-right:20px;
         height:60px;
         line-height:60px;

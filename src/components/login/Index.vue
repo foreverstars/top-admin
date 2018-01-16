@@ -18,8 +18,8 @@
               </Input>
           </FormItem>
           <FormItem>
-            <Checkbox v-model="single">记住密码</Checkbox>
-            <a class="forgetpwd">忘记密码？</a>
+            <Checkbox v-model="rememberPwd">记住密码</Checkbox>
+            <a href="javascript:;" class="forgetpwd">忘记密码？</a>
           </FormItem>
           <FormItem>
               <Button type="primary" @click="handleSubmit('formInline')">登录</Button>
@@ -42,7 +42,7 @@
                 user: '',
                 password: ''
             },
-            single: false,
+            rememberPwd: false,
             ruleInline: {
                 user: [
                     { required: true, message: 'Please fill in the user name', trigger: 'blur' }
