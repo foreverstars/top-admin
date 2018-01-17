@@ -1,7 +1,7 @@
 <template>
   <div class="admin">
     <div class="admin-listmenu">
-      <Menu theme="dark">
+      <Menu theme="dark" @on-select="select" :accordion="true">
         <Submenu name="1">
             <template slot="title">
                 <Icon type="ios-paper"></Icon>
@@ -41,13 +41,18 @@
 
 <script>
   export default {
-    date () {
+    data () {
       return {
 
       }
     },
     created () {
       console.log('admin is created')
+    },
+    methods:  {
+      select (name) {
+        console.log(name)
+      }
     }
   }
 </script>
