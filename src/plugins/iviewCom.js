@@ -9,7 +9,11 @@ import {
   Menu,
   Submenu, 
   MenuItem,
-  MenuGroup
+  MenuGroup,
+  Tabs,
+  TabPane,
+  Row,
+  Col
 } from 'iview'
 
 Vue.component('Form', Form)
@@ -22,3 +26,7 @@ Vue.component('Menu', Menu)
 Vue.component('Submenu', Submenu)
 Vue.component('MenuItem', MenuItem)
 Vue.component('MenuGroup', MenuGroup)
+Vue.component('Tabs', Tabs)
+Vue.component('TabPane', TabPane)
+Vue.component('Row', Row)
+Vue.component('Col', Col)
