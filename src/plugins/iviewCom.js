@@ -13,8 +13,10 @@ import {
   Tabs,
   TabPane,
   Row,
-  Col
+  Col,
+  Table
 } from 'iview'
+
 
 Vue.component('Form', Form)
 Vue.component('FormItem', FormItem)
@@ -30,3 +32,4 @@ Vue.component('Tabs', Tabs)
 Vue.component('TabPane', TabPane)
 Vue.component('Row', Row)
 Vue.component('Col', Col)
+Vue.component('Table', Table)

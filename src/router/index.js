@@ -5,7 +5,8 @@ import Register from '@/components/register/Index'
 import Login from '@/components/login/Index'
 import Home from '@/components/layout/Home'
 import Admin from '@/components/layout/Admin'
-import AdminArticle from '@/components/pages/AdminArticle'
+import AdminArticle from '@/components/pages/admin/AdminArticle'
+import AdminUserManage from '@/components/pages/admin/AdminUserManage'
 
 Vue.use(Router)
 
@@ -38,6 +39,10 @@ let routerConfig = {
           path: 'adminArticle',
           name: 'AdminArticle',
           component: AdminArticle
+        },{
+          path: 'userManage',
+          name: 'AdminUserManage',
+          component: AdminUserManage
         }
       ]
     }

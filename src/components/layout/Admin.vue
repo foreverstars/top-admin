@@ -36,7 +36,7 @@
     },
     methods:  {
       selectMenu (name) {
-        this.$router.push({path: '/admin/adminArticle'})
+        this.$router.push({path: `/admin/${name}`})
       }
     }
   }

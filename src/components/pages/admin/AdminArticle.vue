@@ -22,11 +22,15 @@
 
 
 <script>
+
 export default {
   data() {
     return {
       currentPane: 'program'
     }
+  },
+  components: {
+    
   }
 }
 </script>
