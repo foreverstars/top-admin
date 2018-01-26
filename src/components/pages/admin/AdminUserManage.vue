@@ -17,7 +17,7 @@ export default {
         },
         {
           title: '角色',
-          key: 'role'
+          key: 'role'           
         },
         {
           title: '操作',
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     show(row) {
-      console.log(row)
+      console.log(row.id)
     }
   }
 }

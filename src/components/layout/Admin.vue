@@ -8,6 +8,8 @@
                 内容管理
             </template>
             <MenuItem name="adminArticle">文章管理</MenuItem>
+            <MenuItem name="adminBeauty">个人分类管理</MenuItem>
+            <MenuItem name="adminComment">评论管理</MenuItem>
         </Submenu>
         <Submenu name="user">
             <template slot="title">
@@ -30,9 +32,6 @@
       return {
 
       }
-    },
-    created () {
-      console.log('admin is created')
     },
     methods:  {
       selectMenu (name) {
