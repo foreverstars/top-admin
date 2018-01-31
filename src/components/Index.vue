@@ -19,18 +19,18 @@
         noLogin: true
       }
     }
-  }
+  } 
 </script>
   
 <style scoped lang="less">
   #container {
-    width:100%;
+    width:100%;   
     height:100%;
     .container-actions{
       width:100%;
       height:60px;
       background:gray;
-      a, span{
+      a, span{       
         float:right;
         display:block;
         margin-right:20px;

@@ -6,6 +6,8 @@ import Login from '@/components/login/Index'
 import Home from '@/components/layout/Home'
 import Admin from '@/components/layout/Admin'
 import AdminArticle from '@/components/pages/admin/AdminArticle'
+import AdminBeauty from '@/components/pages/admin/AdminBeauty'
+import AdminComment from '@/components/pages/admin/AdminComment'
 import AdminUserManage from '@/components/pages/admin/AdminUserManage'
 
 Vue.use(Router)
@@ -39,6 +41,14 @@ let routerConfig = {
           path: 'adminArticle',
           name: 'AdminArticle',
           component: AdminArticle
+        },{
+          path: 'adminBeauty',
+          name: 'AdminBeauty',
+          component: AdminBeauty
+        },{
+          path: 'adminComment',
+          name: 'AdminComment',
+          component: AdminComment
         },{
           path: 'userManage',
           name: 'AdminUserManage',

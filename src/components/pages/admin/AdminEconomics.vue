@@ -1,0 +1,62 @@
+<template>
+  <div>
+    <Table border :columns="columns" :data="data">
+
+    </Table>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      columns: [
+        {
+          title: '文章标题',
+          key: 'username'
+        },
+        {
+          title: '创建时间',
+          key: 'role'           
+        },
+        {
+          title: '操作',
+          key: 'action',
+          width: 150,
+          align: 'center',
+          render: (h, params) => {
+            return h('div', [
+              h('Button', {
+                props: {
+                  type: 'primary',
+                  size: 'small'
+                },
+                style: {
+                  marginRight: '5px'
+                },
+                on: {
+                  click: () => {
+                    this.show(params.row)
+                  }
+                }
+              }, '查看')
+            ]);
+          }
+        }
+      ],
+      data: [
+        {id: 1, username: 'zhangsan', role: '管理员'},
+        {id: 2, username: 'lisi', role: '普通用户'},
+        {id: 3, username: 'wangwu', role: '普通用户'},
+        {id: 4, username: 'zhaoliu', role: '普通用户'}
+      ]
+    }
+  },
+  methods: {
+    show(row) {
+      console.log(row.id)
+    }
+  }
+}
+</script>
+

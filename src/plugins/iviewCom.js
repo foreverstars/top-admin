@@ -14,7 +14,10 @@ import {
   TabPane,
   Row,
   Col,
-  Table
+  Table,
+  Select,
+  Option,
+  Switch
 } from 'iview'
 
 
@@ -33,3 +36,6 @@ Vue.component('TabPane', TabPane)
 Vue.component('Row', Row)
 Vue.component('Col', Col)
 Vue.component('Table', Table)
+Vue.component('Select', Select)
+Vue.component('Option', Option)
+Vue.component('i-switch', Switch)

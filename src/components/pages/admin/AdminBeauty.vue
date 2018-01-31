@@ -2,19 +2,19 @@
   <div class="admin-beauty">
       <Tabs :value="currentPane">
         <TabPane label="编程" name="program" >
-          编程
+          <admin-program></admin-program>
         </TabPane>
         <TabPane label="读书" name="reading" >
-          读书
+          <admin-reading></admin-reading>
         </TabPane>
         <TabPane label="经济学" name="economics" >
-          经济学 
+          <admin-economics></admin-economics>
         </TabPane>
         <TabPane label="随笔" name="essay">
-          随笔
+          <admin-essay></admin-essay>
         </TabPane>
         <TabPane label="留言" name="message">
-          留言
+          <admin-message></admin-message>
         </TabPane>
       </Tabs>
   </div>
@@ -22,6 +22,11 @@
 
 
 <script>
+import AdminProgram from './AdminProgram'
+import AdminReading from './AdminReading'
+import AdminEconomics from './AdminEconomics'
+import AdminEssay from './AdminEssay'
+import AdminMessage from './AdminMessage'
 
 export default {
   data() {
@@ -30,7 +35,11 @@ export default {
     }
   },
   components: {
-    
+    'admin-program': AdminProgram,
+    'admin-reading': AdminReading,
+    'admin-economics': AdminEconomics,
+    'admin-essay': AdminEssay,
+    'admin-message': AdminMessage
   }
 }
 </script>
