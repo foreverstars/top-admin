@@ -1,25 +1,25 @@
 <template>
   <div class="admin-article">
-      <div class="admin-article-header">
-        <input type="text" placeholder="输入文章标题"/>
-      </div>
-      <div id="admin-wangeditor">
+    <div class="admin-article-header">
+      <input type="text" placeholder="输入文章标题"/>
+    </div>
+    <div id="admin-wangeditor">
 
-      </div>
-      <div class="admin-article-classify">
-        <label>博客分类:</label>
-        <Select v-model="classifyType" style="width:200px">
-          <Option v-for="item in classifyOptions" :value="item.value" :key="item.value">{{ item.label }}</Option>
-        </Select>
-      </div>
-      <div class="admin-article-classify">
-        <label>私密文章:</label>
-        <i-switch v-model="isPrivacy"></i-switch> {{isPrivacy ? '私密' : ''}}
-      </div>
-      <div class="admin-article-actions">
-        <Button type="success" style="margin-right: 10px" @click="publishArticle">发表博客</Button>
-        <Button type="primary" @click="saveDrafts">保存草稿</Button>
-      </div>
+    </div>
+    <div class="admin-article-classify">
+      <label>文章分类:</label>
+      <Select v-model="classifyType" style="width:200px">
+        <Option v-for="item in classifyOptions" :value="item.value" :key="item.value">{{ item.label }}</Option>
+      </Select>
+    </div>
+    <div class="admin-article-classify">
+      <label>私密文章:</label>
+      <i-switch v-model="isPrivacy"></i-switch> {{isPrivacy ? '私密' : ''}}
+    </div>
+    <div class="admin-article-actions">
+      <Button type="success" style="margin-right: 10px" @click="publishArticle">发表文章</Button>
+      <Button type="primary" @click="saveDrafts">保存草稿</Button>
+    </div>
   </div>
 </template>
 
@@ -34,7 +34,7 @@ export default {
       isPrivacy: false,
       classifyType: '',
       classifyOptions: [
-        {label: '编程', value: 'program'}, 
+        {label: '编程', value: 'program'},
         {label: '名家名著', value: 'reading'},
         {label: '经济学', value: 'economics'},
         {label: '随笔', value: 'essay'},

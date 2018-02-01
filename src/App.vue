@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header>
+    <header>
       <div class="container-actions" v-if="noLogin">
         <router-link to="/login">登陆</router-link>
       </div>
@@ -9,10 +9,10 @@
         <a>退出</a>
         <span>张三</span>
       </div>
-    </Header>
-    <Main>
+    </header>
+    <main>
       <router-view class="content"></router-view>
-    </Main>
+    </main>
   </div>
 </template>
 
@@ -57,7 +57,7 @@ export default {
     top: 0;
     right: 0;
     bottom: 0;
-    Header{
+    header{
       width:100%;
       height:60px;
       position: absolute;
@@ -77,7 +77,7 @@ export default {
         }
       }
     }
-    Main{
+    main{
       width:100%;
       position: absolute;
       top:60px;
