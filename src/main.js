@@ -6,6 +6,7 @@ import router from './router'
 import Plugins from './plugins'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css' // 使用iview css
+import './style/index.less'
 
 import iViewCom from './plugins/iviewCom'
 
