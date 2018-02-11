@@ -38,19 +38,19 @@ let routerConfig = {
       component: Admin,
       children: [
         {
-          path: 'adminArticle',
+          path: 'article',
           name: 'AdminArticle',
           component: AdminArticle
         },{
-          path: 'adminBeauty',
+          path: 'beauty',
           name: 'AdminBeauty',
           component: AdminBeauty
         },{
-          path: 'adminComment',
+          path: 'comment',
           name: 'AdminComment',
           component: AdminComment
         },{
-          path: 'userManage',
+          path: 'user',
           name: 'AdminUserManage',
           component: AdminUserManage
         }

@@ -88,6 +88,7 @@ export default {
       }
     }
     .admin-article-actions{
+      margin-top: 10px;
       width: 100%;
       height:60px;
     }

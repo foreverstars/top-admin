@@ -1,44 +1,53 @@
 <template>
-  <div class="admin">
-    <div class="admin-listmenu">
-      <Menu theme="dark" @on-select="selectMenu">
-        <Submenu name="content">
-            <template slot="title">
-                <Icon type="ios-paper"></Icon>
-                内容管理
-            </template>
-            <MenuItem name="adminArticle">文章管理</MenuItem>
-            <MenuItem name="adminBeauty">个人分类管理</MenuItem>
-            <MenuItem name="adminComment">评论管理</MenuItem>
-        </Submenu>
-        <Submenu name="user">
-            <template slot="title">
-                <Icon type="ios-people"></Icon>
-                用户管理
-            </template>
-            <MenuItem name="userManage">用户信息</MenuItem>
-        </Submenu>
-      </Menu>
-    </div>
-    <div class="admin-content">
-        <router-view></router-view>
-    </div>
+  <div id="app">
+    <admin-header></admin-header>
+    <main>
+      <div class="admin">
+        <div class="admin-listmenu">
+          <Menu theme="dark" @on-select="selectMenu">
+            <Submenu name="content">
+                <template slot="title">
+                    <Icon type="ios-paper"></Icon>
+                    内容管理
+                </template>
+                <MenuItem name="article">文章管理</MenuItem>
+                <MenuItem name="beauty">个人分类管理</MenuItem>
+                <MenuItem name="comment">评论管理</MenuItem>
+            </Submenu>
+            <Submenu name="user">
+                <template slot="title">
+                    <Icon type="ios-people"></Icon>
+                    用户管理
+                </template>
+                <MenuItem name="user">用户信息</MenuItem>
+            </Submenu>
+          </Menu>
+        </div>
+        <div class="admin-content">
+            <router-view></router-view>
+        </div>
+      </div>
+    </main>
   </div>
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
+import AdminHeader from './AdminHeader.vue'
+export default {
+  data () {
+    return {
 
-      }
-    },
-    methods:  {
-      selectMenu (name) {
-        this.$router.push({path: `/admin/${name}`})
-      }
     }
+  },
+  methods:  {
+    selectMenu (name) {
+      this.$router.push({path: `/admin/${name}`})
+    }
+  },
+  components: {
+    'admin-header': AdminHeader
   }
+}
 </script>
 
 <style lang="less" scoped>
