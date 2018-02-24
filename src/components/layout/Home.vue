@@ -15,6 +15,12 @@
     </div>
 
     <div class="home-banner">
+      <div class="home-banner-word">
+        <p>春花秋月何时了</p>
+        <p>往事知多少</p>
+        <p>小楼昨夜又东风</p>
+        <p>故国不堪回首月明中</p>
+      </div>
     </div>
   </div>
 </template>
@@ -48,6 +54,12 @@
           text-align: center;
         }
       }
+    }
+    .home-banner{
+      width: 1000px;
+      height: 200px;
+      margin: 0 auto;
+      background: url('../../assets/banner_top.jpg') no-repeat;
     }
   }
 </style>
