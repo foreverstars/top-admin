@@ -19,7 +19,7 @@
         noLogin: true
       }
     }
-  }
+  } 
 </script>
   
 <style scoped lang="less">

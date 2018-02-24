@@ -6,25 +6,25 @@
         <div class="admin-listmenu">
           <Menu theme="dark" @on-select="selectMenu">
             <Submenu name="content">
-              <template slot="title">
-                  <Icon type="ios-paper"></Icon>
-                  内容管理
-              </template>
-              <MenuItem name="article">文章管理</MenuItem>
-              <MenuItem name="beauty">个人分类管理</MenuItem>
-              <MenuItem name="comment">评论管理</MenuItem>
+                <template slot="title">
+                    <Icon type="ios-paper"></Icon>
+                    内容管理
+                </template>
+                <MenuItem name="article">文章管理</MenuItem>
+                <MenuItem name="beauty">个人分类管理</MenuItem>
+                <MenuItem name="comment">评论管理</MenuItem>
             </Submenu>
             <Submenu name="user">
-              <template slot="title">
-                  <Icon type="ios-people"></Icon>
-                  用户管理
-              </template>
-              <MenuItem name="user">用户信息</MenuItem>
+                <template slot="title">
+                    <Icon type="ios-people"></Icon>
+                    用户管理
+                </template>
+                <MenuItem name="user">用户信息</MenuItem>
             </Submenu>
           </Menu>
         </div>
         <div class="admin-content">
-          <router-view></router-view>
+            <router-view></router-view>
         </div>
       </div>
     </main>
