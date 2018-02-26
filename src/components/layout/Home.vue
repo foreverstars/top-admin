@@ -22,12 +22,31 @@
         <p>故国不堪回首月明中</p>
       </div>
     </div>
+
+    <home-photo-wall></home-photo-wall>
+
+    <home-content></home-content>
+
+    <div class="home-footer">
+
+    </div>
   </div>
 </template>
 
 <script>
-  export default {
+  import HomePhotoWall from '@/components/pages/home/HomePhotoWall'
+  import HomeContent from '@/components/pages/home/HomeContent'
 
+  export default {
+    data () {
+      return {
+
+      }
+    },
+    components: {
+      'home-photo-wall': HomePhotoWall,
+      'home-content': HomeContent
+    }
   }
 </script>
 
@@ -56,8 +75,8 @@
       }
     }
     .home-banner{
-      width: 1000px;
-      height: 200px;
+      width: 100%;
+      height: 260px;
       margin: 0 auto;
       background: url('../../assets/banner_top.jpg') no-repeat;
     }
