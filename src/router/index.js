@@ -9,6 +9,11 @@ import AdminArticle from '@/components/pages/admin/AdminArticle'
 import AdminBeauty from '@/components/pages/admin/AdminBeauty'
 import AdminComment from '@/components/pages/admin/AdminComment'
 import AdminUserManage from '@/components/pages/admin/AdminUserManage'
+import Program from '@/components/pages/home/Program'
+import Reading from '@/components/pages/home/Reading'
+import Economics from '@/components/pages/home/Economics'
+import Essay from '@/components/pages/home/Essay'
+import Message from '@/components/pages/home/Message'
 
 Vue.use(Router)
 
@@ -31,7 +36,30 @@ let routerConfig = {
     {
       path: '/home',
       name: 'Home',
-      component: Home
+      component: Home,
+      children: [
+        {
+          path: 'program',
+          name: 'Program',
+          component: Program
+        },{
+          path: 'reading',
+          name: 'Reading',
+          component: Reading
+        },{
+          path: 'economics',
+          name: 'Economics',
+          component: Economics
+        },{
+          path: 'essay',
+          name: 'Essay',
+          component: Essay
+        },{
+          path: 'message',
+          name: 'Message',
+          component: Message                    
+        }
+      ]
     },
     {
       path: '/admin',

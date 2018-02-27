@@ -18,6 +18,7 @@ axios.interceptors.request.use(
 )         
 
 // http response 拦截器 
+/*
 axios.interceptors.response.use(
   response => {
     const data = response.data
@@ -44,6 +45,6 @@ axios.interceptors.response.use(
     return Promise.reject(err)
   }
 )
-
+*/
 export default axios
 
