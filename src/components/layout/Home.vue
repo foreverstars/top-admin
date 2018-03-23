@@ -5,12 +5,9 @@
         <h1>虞美人</h1>
       </div>
       <ul class="home-header-navigator">
-        <li>春花</li>
-        <li>春花</li>
-        <li>春花</li>
-        <li>春花</li>
-        <li>春花</li>
-        <li>春花</li>
+        <li v-for="item in list" :key="item.path">
+          <router-link :to="item.path">{{item.title}}</router-link>
+        </li>
       </ul>
     </div>
 
@@ -24,12 +21,10 @@
     </div>
 
     <home-photo-wall></home-photo-wall>
-
     <home-content></home-content>
 
-    <div class="home-footer">
+    <router-view></router-view>
 
-    </div>
   </div>
 </template>
 
@@ -40,7 +35,11 @@
   export default {
     data () {
       return {
-
+        isHomePage: true,
+        list: [
+          {title: '编程', path: '/home/program'}, {title: '阅读', path: '/home/reading'}, {title: '经济学', path: '/home/economics'},
+          {title: '随笔', path: '/home/essay'}, {title: '留言', path: '/home/message'}
+        ]
       }
     },
     components: {
