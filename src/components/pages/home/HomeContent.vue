@@ -3,8 +3,7 @@
     <h2>文章推荐</h2>
     
     <div class="home-content-articles">
-      <div class="content-article" v-for="item in list">
-        
+      <div class="content-article" v-for="(item,index) in list" :key="index">
         <div class="content-article-title">
           {{item.title}}
         </div>
