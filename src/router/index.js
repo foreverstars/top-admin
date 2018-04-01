@@ -1,20 +1,25 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store'
+
 import Register from '@/components/register/Index'
 import Login from '@/components/login/Index'
 import Home from '@/components/layout/Home'
+
 import Admin from '@/components/layout/Admin'
 import AdminArticle from '@/components/pages/admin/AdminArticle'
 import AdminBeauty from '@/components/pages/admin/AdminBeauty'
 import AdminComment from '@/components/pages/admin/AdminComment'
 import AdminUserManage from '@/components/pages/admin/AdminUserManage'
+
+import HomeDefault from '@/components/pages/home/HomeDefault'
 import Program from '@/components/pages/home/Program'
 import Reading from '@/components/pages/home/Reading'
 import Economics from '@/components/pages/home/Economics'
 import Essay from '@/components/pages/home/Essay'
 import Message from '@/components/pages/home/Message'
 
+import Detail from '@/components/pages/home/Detail'
 Vue.use(Router)
 
 let routerConfig = {
@@ -35,9 +40,13 @@ let routerConfig = {
     },
     {
       path: '/home',
-      name: 'Home',
       component: Home,
       children: [
+        {
+          path: '/',
+          component: HomeDefault,
+          name: 'HomeDefault'
+        },
         {
           path: 'program',
           name: 'Program',
@@ -58,6 +67,10 @@ let routerConfig = {
           path: 'message',
           name: 'Message',
           component: Message                    
+        }, {
+          path: 'detail/:id',
+          name: 'Detail',
+          component: Detail
         }
       ]
     },
@@ -88,4 +101,4 @@ let routerConfig = {
 }
 const router = new Router(routerConfig)
 
-export default router 
+export default router

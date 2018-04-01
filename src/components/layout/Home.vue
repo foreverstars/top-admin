@@ -11,40 +11,24 @@
       </ul>
     </div>
 
-    <div class="home-banner">
-      <div class="home-banner-word">
-        <p>春花秋月何时了</p>
-        <p>往事知多少</p>
-        <p>小楼昨夜又东风</p>
-        <p>故国不堪回首月明中</p>
-      </div>
-    </div>
-
-    <home-photo-wall></home-photo-wall>
-    <home-content></home-content>
-
     <router-view></router-view>
 
   </div>
 </template>
 
 <script>
-  import HomePhotoWall from '@/components/pages/home/HomePhotoWall'
-  import HomeContent from '@/components/pages/home/HomeContent'
-
   export default {
     data () {
       return {
         isHomePage: true,
         list: [
-          {title: '编程', path: '/home/program'}, {title: '阅读', path: '/home/reading'}, {title: '经济学', path: '/home/economics'},
-          {title: '随笔', path: '/home/essay'}, {title: '留言', path: '/home/message'}
+          {title: '编程', path: '/home/program'}, 
+          {title: '阅读', path: '/home/reading'}, 
+          {title: '经济学', path: '/home/economics'},
+          {title: '随笔', path: '/home/essay'}, 
+          {title: '留言', path: '/home/message'}
         ]
       }
-    },
-    components: {
-      'home-photo-wall': HomePhotoWall,
-      'home-content': HomeContent
     }
   }
 </script>
@@ -72,12 +56,6 @@
           text-align: center;
         }
       }
-    }
-    .home-banner{
-      width: 100%;
-      height: 260px;
-      margin: 0 auto;
-      background: url('../../assets/banner_top.jpg') no-repeat;
     }
   }
 </style>
