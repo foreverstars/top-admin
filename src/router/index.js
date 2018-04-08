@@ -20,6 +20,8 @@ import Essay from '@/components/pages/home/Essay'
 import Message from '@/components/pages/home/Message'
 
 import Detail from '@/components/pages/home/Detail'
+
+import NotFound from '@/components/pages/NotFound'
 Vue.use(Router)
 
 let routerConfig = {
@@ -96,6 +98,15 @@ let routerConfig = {
           component: AdminUserManage
         }
       ]
+    },
+    {
+      path: '/404',
+      component: NotFound,
+      name: 'NotFound'
+    },
+    {
+      path: '*',
+      redirect: '/404'
     }
   ]
 }
