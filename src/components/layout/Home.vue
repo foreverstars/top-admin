@@ -2,11 +2,13 @@
   <div id="home">
     <div class="home-header">
       <div class="logo">
-        <h1>虞美人</h1>
+        <h1>
+          <router-link to="/home">虞美人</router-link>
+        </h1>
       </div>
       <ul class="home-header-navigator">
         <li v-for="item in list" :key="item.path">
-          <router-link :to="item.path">{{item.title}}</router-link>
+          <router-link :to="item.path" tag="li" active-class="active">{{item.title}}</router-link>
         </li>
       </ul>
     </div>
@@ -37,6 +39,7 @@
   #home{
     width: 100%;
     height: 100%;
+    overflow: auto;
     .home-header{
       width: 1000px;
       margin: 0 auto;
@@ -44,6 +47,9 @@
       .logo{
         float: left;
         line-height: 80px;
+        h1 a {
+          color: #123456;
+        }
       }
       .home-header-navigator{
         float: right;
@@ -54,6 +60,10 @@
           font-size: 16px;
           line-height: 80px;
           text-align: center;
+          cursor: pointer;
+          &.active{
+            color: blue;
+          }
         }
       }
     }

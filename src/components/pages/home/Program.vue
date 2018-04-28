@@ -5,8 +5,11 @@
       <div class="program-banner-word">
       </div>
     </div>
-    
-    <article-list></article-list>
+
+    <div class="program-article">
+      <article-list></article-list>
+    </div>
+
   </div>
 </template>
 
@@ -29,12 +32,15 @@ export default {
 <style lang="less" scoped>
   .home-program{
     width: 100%;
-    background: #fff;
     .program-banner{
       width: 100%;
       height: 260px;
       margin: 0 auto;
       background: url('../../../assets/banner_top.jpg') no-repeat;
+    }
+    .program-article{
+      width: 1000px;
+      margin: 0 auto;
     }
   }
 </style>

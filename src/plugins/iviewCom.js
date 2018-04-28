@@ -17,7 +17,8 @@ import {
   Table,
   Select,
   Option,
-  Switch
+  Switch,
+  Card
 } from 'iview'
 
 
@@ -39,3 +40,4 @@ Vue.component('Table', Table)
 Vue.component('Select', Select)
 Vue.component('Option', Option)
 Vue.component('i-switch', Switch)
+Vue.component('Card', Card)
