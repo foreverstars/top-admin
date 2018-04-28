@@ -14,7 +14,6 @@
     </div>
 
     <router-view></router-view>
-
   </div>
 </template>
 
@@ -43,26 +42,32 @@
     .home-header{
       width: 1000px;
       margin: 0 auto;
-      height: 80px;
+      height: 60px;
       .logo{
         float: left;
-        line-height: 80px;
+        line-height: 60px;
         h1 a {
           color: #123456;
         }
       }
       .home-header-navigator{
         float: right;
-        height: 80px;
+        height: 60px;
         li{
           float: left;
-          width: 60px;
+          width: 80px;
           font-size: 16px;
-          line-height: 80px;
+          line-height: 60px;
           text-align: center;
+          margin-right: 5px;
           cursor: pointer;
-          &.active{
-            color: blue;
+          &.active {
+            background: #f15694;
+            border-radius: 5px;
+          }
+          &:hover {
+            background: #f15694;
+            border-radius: 5px;
           }
         }
       }
