@@ -1,6 +1,2 @@
-const COMMON = {
-  LOGIN: 'LOGIN',
-  LOGOUT: 'LOGOUT'
-}
-
-export default COMMON
+export const LOGIN = 'LOGIN'
+export const LOGOUT = 'LOGOUT'

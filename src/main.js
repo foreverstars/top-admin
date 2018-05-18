@@ -3,7 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import Plugins from './plugins'
+import axios from './api/fetch'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css' // 使用iview css
 import './style/index.less'
@@ -15,13 +17,17 @@ Vue.config.productionTip = false
 // 全局引入iview组件
 // Vue.use(iView)
 
-// 配置vue插件
+// 配置vue插件 引入需要的iview组件
 Vue.use(Plugins)
+
+console.log(axios)
+Vue.prototype.$http = axios
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

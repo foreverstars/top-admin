@@ -1,7 +1,7 @@
 <template>
   <div class="register">
     <div class="register-logo">
-        <router-link to="/home">月星辰</router-link>
+      <router-link to="/home">月星辰</router-link>
     </div>
     <div class="register-info">
       <div class="register-info-l">
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -63,10 +64,14 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['login']),
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
-          this.$Message.success("Success!");
+          this.login({
+            username: this.formInline.user,
+            password: this.formInline.password
+          })
         } else {
           this.$Message.error("Fail!");
         }

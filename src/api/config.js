@@ -3,6 +3,6 @@
 const base = ''
 
 export default {
-    'login': '',
-    'register': ''
+    'login': base + '/login',
+    'register': base + '/register'
 }

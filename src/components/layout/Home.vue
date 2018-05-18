@@ -64,10 +64,12 @@
           &.active {
             background: #f15694;
             border-radius: 5px;
+            color: #fff;
           }
           &:hover {
             background: #f15694;
             border-radius: 5px;
+            color: #fff;
           }
         }
       }

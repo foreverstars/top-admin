@@ -6,8 +6,8 @@
           <img src="../../assets/article.jpg" />
         </div>
 
-        <div class="main-li-right">
-          <h3 @click="goRouter(item.id)">{{item.title}}</h3>
+        <div class="main-li-right" @click="goRouter(item.id)">
+          <h3 >{{item.title}}</h3>
           <p>{{item.content}}</p>
         </div>
       </Card>
@@ -87,6 +87,7 @@ export default {
       width: 680px;
       margin-left: 20px;
       display: inline-block;
+      cursor: pointer;
       h3 {
         font-weight: bolder;
         margin-bottom: 10px;

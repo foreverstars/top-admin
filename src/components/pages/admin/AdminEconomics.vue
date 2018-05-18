@@ -17,7 +17,7 @@ export default {
         },
         {
           title: '创建时间',
-          key: 'role'           
+          key: 'role'
         },
         {
           title: '操作',
