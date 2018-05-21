@@ -11,8 +11,8 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/login': {
-        target: 'http://127.0.1.1:9090',
+      'top-php': {
+        target: 'http://localhost:80',
         changeOrigin: true,
         secure: false
       },

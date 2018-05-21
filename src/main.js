@@ -20,7 +20,6 @@ Vue.config.productionTip = false
 // 配置vue插件 引入需要的iview组件
 Vue.use(Plugins)
 
-console.log(axios)
 Vue.prototype.$http = axios
 
 /* eslint-disable no-new */

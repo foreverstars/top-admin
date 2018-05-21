@@ -64,11 +64,11 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['login']),
+    ...mapActions(['register']),
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
-          this.login({
+          this.register({
             username: this.formInline.user,
             password: this.formInline.password
           })

@@ -1,8 +1,8 @@
 // 配置所有请求的接口地址
 
-const base = ''
+const base = 'top-php'
 
 export default {
     'login': base + '/login',
-    'register': base + '/register'
+    'register': base + '/register.php'
 }

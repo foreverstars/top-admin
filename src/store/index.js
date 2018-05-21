@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { LOGIN, LOGOUT } from './mutationTypes'
 import Api from '@/api/config'
+import axios from '@/api/fetch'
 
 Vue.use(Vuex)
 
@@ -24,8 +25,9 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    login (data) {
-      Vue.$http.get(Api.login, data).then(result => {
+    register (data) {
+      console.log(222)
+      axios.get(Api.register, data).then(result => {
         console.log(result)
       })
     },
