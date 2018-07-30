@@ -25,10 +25,13 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    register (data) {
-      console.log(222)
-      axios.get(Api.register, data).then(result => {
-        console.log(result)
+    register ({ state, commit}, data) {
+      axios.post(Api.register, data).then(res => {
+        if (res.code === 0) {
+          alert(res.message)
+        } else {
+          alert(res.message)
+        }
       })
     },
 

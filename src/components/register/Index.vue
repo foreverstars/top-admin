@@ -6,7 +6,7 @@
     <div class="register-info">
       <div class="register-info-l">
         <h2>注册</h2>
-        <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
+        <Form ref="formInline" :model="formInline" inline>
           <FormItem prop="user">
             <Input type="text" size="large" v-model="formInline.user" placeholder="Username"  autocomplete="off">
               <Icon type="ios-person-outline" slot="prepend"></Icon>

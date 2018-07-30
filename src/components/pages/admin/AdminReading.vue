@@ -1,7 +1,6 @@
 <template>
   <div>
     <Table border :columns="columns" :data="data">
-
     </Table>
   </div>
 </template>
@@ -17,7 +16,7 @@ export default {
         },
         {
           title: '角色',
-          key: 'role'           
+          key: 'role'
         },
         {
           title: '操作',
@@ -59,3 +58,13 @@ export default {
   }
 }
 </script>
+
+
+
+
+
+
+
+
+
+

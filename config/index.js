@@ -6,13 +6,17 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      'top-php': {
-        target: 'http://localhost:80',
+      '/api': {
+        target: 'https://www.maizuo.com',
+        changeOrigin: true,
+        secure: false
+      },
+      '/top-php': {
+        target: 'http://127.0.0.1:80',
         changeOrigin: true,
         secure: false
       },

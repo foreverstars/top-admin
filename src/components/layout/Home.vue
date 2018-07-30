@@ -3,7 +3,7 @@
     <div class="home-header">
       <div class="logo">
         <h1>
-          <router-link to="/home">虞美人</router-link>
+          <router-link to="/home">Deerschen</router-link>
         </h1>
       </div>
       <ul class="home-header-navigator">
@@ -30,6 +30,9 @@
           {title: '留言', path: '/home/message'}
         ]
       }
+    },
+
+    mounted () {
     }
   }
 </script>
@@ -47,7 +50,7 @@
         float: left;
         line-height: 60px;
         h1 a {
-          color: #123456;
+          color: pink;
         }
       }
       .home-header-navigator{
