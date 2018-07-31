@@ -3,6 +3,9 @@
 const base = '/top-php'
 
 export default {
-    'login': base + '/login.php',
-    'register': base + '/register.php'
+    login: base + '/login.php',
+    register: base + '/register.php',
+    saveArticle: base + '/addArticle.php',
+    getTypeList: base + '/typeList.php',
+    getUserList: base + '/userList.php'
 }

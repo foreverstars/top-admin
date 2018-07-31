@@ -7,6 +7,9 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import { adminOptions } from '@/utils/dict.js'
+
 export default {
   data() {
     return {
@@ -17,7 +20,10 @@ export default {
         },
         {
           title: '角色',
-          key: 'role'           
+          key: 'isAdmin',
+          render: (h, params) => {
+            return adminOptions.find(v => params.row.isAdmin === v.value).name
+          }
         },
         {
           title: '操作',
@@ -45,17 +51,22 @@ export default {
         }
       ],
       data: [
-        {id: 1, username: 'zhangsan', role: '管理员'},
-        {id: 2, username: 'lisi', role: '普通用户'},
-        {id: 3, username: 'wangwu', role: '普通用户'},
-        {id: 4, username: 'zhaoliu', role: '普通用户'}
       ]
     }
   },
   methods: {
+    ...mapActions('admin', ['getUserList']),
     show(row) {
       console.log(row.id)
     }
+  },
+  created () {
+    this.getUserList().then(res => {
+      if (res.data.code === 0) {
+        this.data = res.data.data
+      } else {
+      }
+    })
   }
 }
 </script>

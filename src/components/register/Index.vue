@@ -71,9 +71,16 @@ export default {
           this.register({
             username: this.formInline.user,
             password: this.formInline.password
+          }).then((res) => {
+            if (res.data.code === 0) {
+              this.$Message.success(res.data.message)
+              this.$router.push({path: '/login'})
+            } else {
+              this.$Message.error(res.data.message)
+            }
           })
         } else {
-          this.$Message.error("Fail!");
+          return false
         }
       });
     }

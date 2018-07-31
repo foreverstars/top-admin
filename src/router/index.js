@@ -24,15 +24,14 @@ import Detail from '@/components/pages/home/Detail'
 import NotFound from '@/components/pages/NotFound'
 Vue.use(Router)
 
-let routerConfig = {
-  routes: [
+const routes = [
     {
       path: '/',
       redirect: '/home'
     },
     {
       path: '/register',
-      name: 'Register',
+      name: 'Register', 
       component: Register
     },
     {
@@ -109,7 +108,8 @@ let routerConfig = {
       redirect: '/404'
     }
   ]
-}
-const router = new Router(routerConfig)
+const router = new Router({ mode: 'history', routes })
+
+// const router = new Router({ routes })
 
 export default router

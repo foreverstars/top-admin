@@ -4,11 +4,18 @@ import { LOGIN, LOGOUT } from './mutationTypes'
 import Api from '@/api/config'
 import axios from '@/api/fetch'
 
+import admin from './admin.js'
+import home from './home.js'
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    userInfo: ''
+    userInfo: {
+      id: 3,
+      name: 'deerschen',
+      isAdmin: 1
+    }
   },
   getter: {
     hasRoutePermission: state => path => {
@@ -17,7 +24,9 @@ const store = new Vuex.Store({
   },
   mutations: {
     [LOGIN] (state, payload) {
-
+      state.userInfo.id = payload.id
+      state.userInfo.name = payload.username
+      state.userInfo.isAdmin = payload.isAdmin
     },
 
     [LOGOUT] (state, payload) {
@@ -26,17 +35,11 @@ const store = new Vuex.Store({
   },
   actions: {
     register ({ state, commit}, data) {
-      axios.post(Api.register, data).then(res => {
-        if (res.code === 0) {
-          alert(res.message)
-        } else {
-          alert(res.message)
-        }
-      })
+      return axios.post(Api.register, data)
     },
 
-    getUserPermissionList ({ state, commit }) {
-
+    login ({ state, commit}, data) {
+      return axios.post(Api.login, data)
     },
 
     getArticleList ({ state, commit }, params) {
@@ -45,7 +48,8 @@ const store = new Vuex.Store({
   },
 
   modules:{
-    
+    admin,
+    home
   }
 })
 

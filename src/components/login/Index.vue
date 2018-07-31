@@ -7,8 +7,8 @@
       <div class="register-info-l">
         <h2>登录</h2>
         <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
-          <FormItem prop="user">
-              <Input type="text" size="large" v-model="formInline.user" placeholder="Username"  autocomplete="off">
+          <FormItem prop="username">
+              <Input type="text" size="large" v-model="formInline.username" placeholder="Username" autocomplete="off">
                   <Icon type="ios-person-outline" slot="prepend"></Icon>
               </Input>
           </FormItem>
@@ -18,7 +18,7 @@
               </Input>
           </FormItem>
           <FormItem>
-            <Checkbox v-model="rememberPwd">记住密码</Checkbox>
+            <Checkbox v-model="formInline.rememberPwd">记住密码</Checkbox>
             <a href="javascript:;" class="forgetpwd">忘记密码？</a>
           </FormItem>
           <FormItem>
@@ -35,17 +35,18 @@
 </template>
 
 <script>
+import { mapActions, mapMutations } from 'vuex'
  export default {
     data () {
         return {
             formInline: {
-                user: '',
-                password: ''
+                username: '',
+                password: '',
+                rememberPwd: false
             },
-            rememberPwd: false,
             ruleInline: {
-                user: [
-                    { required: true, message: 'Please fill in the user name', trigger: 'blur' }
+                username: [
+                    { required: true, message: 'Please fill in the username', trigger: 'blur' }
                 ],
                 password: [
                     { required: true, message: 'Please fill in the password.', trigger: 'blur' },
@@ -55,12 +56,27 @@
         }
     },
     methods: {
+        ...mapMutations(['LOGIN']),
+        ...mapActions(['login']),
         handleSubmit(name) {
             this.$refs[name].validate((valid) => {
                 if (valid) {
-                    this.$Message.success('Success!');
+                    this.login({
+                        username: this.formInline.username,
+                        password: this.formInline.password
+                    }).then((res) => {
+                        if (res.data.code === 0) {
+                            this.$Message.success(res.data.message)
+                            this.LOGIN(res.data.data)
+                            this.$router.push({
+                                path: '/admin'
+                            })
+                        } else {
+                            this.$Message.error(res.data.message)
+                        }
+                    })
                 } else {
-                    this.$Message.error('Fail!');
+                    return false
                 }
             })
         }

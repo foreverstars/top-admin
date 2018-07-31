@@ -1,22 +1,37 @@
 <template>
   <div>
     <Table border :columns="columns" :data="data">
+
     </Table>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import { typeOptions } from '@/utils/dict.js'
+import moment from 'moment'
 export default {
   data() {
     return {
       columns: [
         {
-          title: '用户名',
-          key: 'username'
+          title: '文章标题',
+          key: 'title'
         },
         {
-          title: '角色',
-          key: 'role'
+          title: '类别',
+          key: 'type',
+          render: (h, params) => {
+            return typeOptions.find(v => params.row.type === v.value).name
+          }
+        },
+        {
+          title: '作者',
+          key: 'author'
+        },
+        {
+          title: '创建时间',
+          key: 'time'
         },
         {
           title: '操作',
@@ -38,33 +53,30 @@ export default {
                     this.show(params.row)
                   }
                 }
-              }, '修改')
+              }, '查看')
             ]);
           }
         }
       ],
       data: [
-        {id: 1, username: 'zhangsan', role: '管理员'},
-        {id: 2, username: 'lisi', role: '普通用户'},
-        {id: 3, username: 'wangwu', role: '普通用户'},
-        {id: 4, username: 'zhaoliu', role: '普通用户'}
       ]
     }
   },
+  created () {
+    this.getTypeList({
+      type: 'reading'
+    }).then(res => {
+      if (res.data.code === 0) {
+        this.data = res.data.data
+      } else {
+      }
+    })
+  },
   methods: {
+    ...mapActions('admin', ['getTypeList']),
     show(row) {
       console.log(row.id)
     }
   }
 }
 </script>
-
-
-
-
-
-
-
-
-
-
