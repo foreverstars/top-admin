@@ -1,7 +1,6 @@
 <template>
   <div>
     <Table border :columns="columns" :data="data">
-
     </Table>
   </div>
 </template>
@@ -32,11 +31,7 @@ export default {
         },
         {
           title: '创建时间',
-          key: 'time',
-          render: (h, params) => {
-            console.log(params.row.time)
-            return moment(1533031029862).format('YYYY-MM-DD HH:mm:ss')
-          }
+          key: 'time'
         },
         {
           title: '操作',

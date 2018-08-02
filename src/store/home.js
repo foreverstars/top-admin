@@ -1,3 +1,5 @@
+import Api from '@/api/config'
+import axios from '@/api/fetch'
 
 export default {
   namespaced: true,
@@ -9,7 +11,16 @@ export default {
   },
 
   actions: {
-    saveArticle ({ commit }, filter) {
+    getHomeList ({ commit }, filter) {
+      return axios.post(Api.getHomeList, filter)
+    },
+
+    getTypeList ({ commit }, filter) {
+      return axios.post(Api.getTypeList, filter)
+    },
+
+    getContent ({ commit }, filter) {
+      return axios.post(Api.getContent, filter)
     }
   }
 }

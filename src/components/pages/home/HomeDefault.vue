@@ -9,7 +9,7 @@
         <!-- <home-content></home-content>  -->
 
         <div class="home-content">
-          <article-list></article-list>
+          <article-list :data="list"></article-list>
         </div >
     </div> 
 </template>
@@ -18,17 +18,31 @@
   import HomePhotoWall from '@/components/pages/home/HomePhotoWall'
   import HomeContent from '@/components/pages/home/HomeContent'
   import ArticleList from '@/components/common/articleList'
+  import { mapActions } from 'vuex'
 
   export default {
     data () {
       return {
-
+        list: []
       }
     },
     components: {
       'home-photo-wall': HomePhotoWall,
       'home-content': HomeContent,
       'article-list': ArticleList
+    },
+    methods: {
+      ...mapActions('home', ['getHomeList'])
+    },
+    created () {
+      this.getHomeList().then(res => {
+        console.log(res)
+        if (res.data.code === 0) {
+          this.list = res.data.data
+        } else {
+
+        }
+      })
     }
   }
 </script>

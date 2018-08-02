@@ -1,18 +1,37 @@
 <template>
   <div class="program-detail">
-    <h2>文章标题</h2>
+    <h2>{{ data.title || '' }}</h2>
       
-    <p>文章详情文章详情文章详情文章详情文章详情文章详情文章详情文章详情文章详情      
-       文章详情文章详情文章详情文章详情文章详情文章详情文章详情文章详情文章详情 
-       文章详情文章详情文章详情文章详情文章详情文章详情文章详情文章详情文章详情 
-       文章详情文章详情文章详情文章详情文章详情文章详情文章详情文章详情文章详情 
-    </p>
+    <div ref="content">
+    </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
-  
+  data () {
+    return {
+      data: {}
+    }
+  },
+  methods: {
+    ...mapActions('home', ['getContent'])
+  },
+  created () {
+    const id = this.$route.params.id
+    this.getContent({
+      id
+    }).then(res => {
+      if (res.data.code === 0) {
+        this.data = res.data.data
+        this.$refs.content.innerHTML = this.data.content
+      } else {
+
+      }
+    })
+  }
 }
 </script>
 

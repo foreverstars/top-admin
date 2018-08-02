@@ -41,14 +41,14 @@ export default {
         title: '',
         isPrivacy: false,
         type: '',
-        content: ''
+        content: '',
+        brief: ''
       },
       classifyOptions: [
         {label: '编程', value: 'program'},
         {label: '阅读', value: 'reading'},
         {label: '经济学', value: 'economics'},
-        {label: '随笔', value: 'essay'},
-        {label: '留言', value: 'message'}
+        {label: '随笔', value: 'essay'}
       ]
     }
   },
@@ -60,7 +60,8 @@ export default {
   methods: {
     ...mapActions('admin', ['saveArticle']),
     publishArticle() {
-      this.form.content = this.editor.txt.html()
+      this.form.content = this.editor.txt.html();
+      this.form.brief = this.editor.txt.text();
       this.saveArticle({
         ...this.form,
         author: this.$store.state.userInfo.name,
@@ -75,13 +76,14 @@ export default {
       })
     },
     saveDrafts() {
-      console.log(this.editor.txt.text())
+      this.$Message.warning('暂不支持')
     },
     clear() {
       this.form.title = ''
       this.form.isPrivacy = false
       this.form.type = ''
       this.form.content = ''
+      this.form.brief = ''
       this.editor.txt.clear()
     }
   }

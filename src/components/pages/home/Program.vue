@@ -7,7 +7,7 @@
     </div>
 
     <div class="program-article">
-      <article-list></article-list>
+      <article-list :data="list"></article-list>
     </div>
 
   </div>
@@ -15,15 +15,31 @@
 
 <script>
 import ArticleList from '@/components/common/articleList'
+import { mapActions } from 'vuex'
 
 export default {
   data () {
     return {
-      flag: true
+      flag: true,
+      list: []
     }
   },
   components: {
     'article-list': ArticleList
+  },
+  methods: {
+    ...mapActions('home', ['getTypeList'])
+  },
+  created () {
+    this.getTypeList({
+      type: 'program'
+    }).then(res => {
+      if (res.data.code === 0) {
+        this.list = res.data.data
+      } else {
+
+      }
+    })
   }
 }
 

@@ -7,5 +7,7 @@ export default {
     register: base + '/register.php',
     saveArticle: base + '/addArticle.php',
     getTypeList: base + '/typeList.php',
-    getUserList: base + '/userList.php'
+    getUserList: base + '/userList.php',
+    getHomeList: base + '/homeList.php',
+    getContent: base + '/getContent.php'
 }
