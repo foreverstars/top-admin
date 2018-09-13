@@ -36,7 +36,6 @@
     },
     created () {
       this.getHomeList().then(res => {
-        console.log(res)
         if (res.data.code === 0) {
           this.list = res.data.data
         } else {

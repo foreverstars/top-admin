@@ -55,13 +55,21 @@ export default {
   mounted() {
     const editor = new wangeditor('#admin-wangeditor')
     this.editor = editor
+    editor.customConfig.uploadImgShowBase64 = true
+    var self = this
+    editor.customConfig.customUploadImg = function (files, insert) {
+      self.base64(files[0]).then(data => {
+        insert(data)
+      })
+    }
     editor.create()
   },
   methods: {
     ...mapActions('admin', ['saveArticle']),
     publishArticle() {
-      this.form.content = this.editor.txt.html();
-      this.form.brief = this.editor.txt.text();
+      const word = this.handleTrim(this.editor.txt.text())
+      this.form.content = this.editor.txt.html()
+      this.form.brief = word.length > 100 ? word.substring(0, 100) : word
       this.saveArticle({
         ...this.form,
         author: this.$store.state.userInfo.name,
@@ -75,6 +83,24 @@ export default {
         }
       })
     },
+
+    handleTrim (str) {
+      var result = str.replace(/&nbsp;/ig,"")
+      return result.replace(/\s+/g,"")
+    },
+
+    base64 (file) {
+      return new Promise(function(resolve, reject){
+        var fileReader, imgData
+        fileReader = new FileReader()
+        fileReader.readAsDataURL(file)
+        fileReader.onload = function () {
+          imgData = this.result
+          resolve(imgData)
+        }
+      })
+    },
+
     saveDrafts() {
       this.$Message.warning('暂不支持')
     },
@@ -107,6 +133,10 @@ export default {
       }
     }
     #admin-wangeditor{
+       width: 100%;
+       margin-bottom: 20px;
+    }
+    #admin-wangeditor1{
        width: 100%;
        margin-bottom: 20px;
     }

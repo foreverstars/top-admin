@@ -1,8 +1,8 @@
 <template>
   <div class="program-detail">
-    <h2>{{ data.title || '' }}</h2>
+    <h2>{{ title }}</h2>
       
-    <div ref="content">
+    <div ref="content" v-html="content" class="content">
     </div>
   </div>
 </template>
@@ -13,7 +13,8 @@ import { mapActions } from 'vuex';
 export default {
   data () {
     return {
-      data: {}
+      title: '',
+      content: ''
     }
   },
   methods: {
@@ -25,8 +26,8 @@ export default {
       id
     }).then(res => {
       if (res.data.code === 0) {
-        this.data = res.data.data
-        this.$refs.content.innerHTML = this.data.content
+        this.title = res.data.data.title
+        this.content = res.data.data.content
       } else {
 
       }
@@ -39,9 +40,13 @@ export default {
   .program-detail{
     width: 1000px;
     margin: 0 auto;
-    border: 1px solid #ccc;
-    height: 1000px;
-    padding: 5px 10px;
+    border: 1px dashed #ccc;
+    padding: 20px 20px;
+    border-radius: 5px;
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
   }
 </style>
 
