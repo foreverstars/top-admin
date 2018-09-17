@@ -57,11 +57,11 @@ export default {
     this.editor = editor
     editor.customConfig.uploadImgShowBase64 = true
     var self = this
-    editor.customConfig.customUploadImg = function (files, insert) {
-      self.base64(files[0]).then(data => {
-        insert(data)
-      })
-    }
+    // editor.customConfig.customUploadImg = function (files, insert) {
+    //   self.base64(files[0]).then(data => {
+    //     insert(data)
+    //   })
+    // }
     editor.create()
   },
   methods: {

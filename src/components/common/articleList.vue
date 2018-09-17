@@ -13,7 +13,7 @@
             <span>{{ item.type }}</span>
           </span>
           <span>
-            <Icon type="md-time" />
+            <Icon type="ios-time-outline" />
             <span>{{ item.time }}</span>
           </span>
         </div>
@@ -71,8 +71,27 @@ export default {
     }
   }
   .info {
+    line-height: 30px;
+    span:first-child{
+      vertical-align: middle;
+      i {
+        color: #ff6699;
+      }
+      span {
+        font-size: 13px;
+        color: gray;
+      }
+    }
     span:last-child{
+      vertical-align: middle;
       margin-right: 10px;
+      i {
+        color: #0099ff;
+      }
+      span {
+        font-size: 12px;
+        color: gray;
+      }
     }
   }
 }
