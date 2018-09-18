@@ -30,6 +30,7 @@ export default {
 }
 </script>
 
+
 <style lang="less" scoped>
   .photo-wall{
     width: 100%;
