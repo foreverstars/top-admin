@@ -18,6 +18,10 @@
         <div class="home-banner-word">
         </div>
       </div>
+
+      <!-- <div class="router-info" v-if="title">
+        <h3>{{title}}</h3>
+      </div> -->
       <router-view></router-view>
     </template>
 
@@ -33,10 +37,11 @@
       return {
         isHomePage: true,
         list: [
-          {title: '编程', path: '/program'}, 
-          {title: '阅读', path: '/reading'}, 
+          {title: '首页', path: '/home'},
+          {title: '编程', path: '/program'},
+          {title: '阅读', path: '/reading'},
           {title: '经济学', path: '/economics'},
-          {title: '随笔', path: '/essay'}, 
+          {title: '随笔', path: '/essay'},
           {title: '留言', path: '/message'}
         ]
       }
@@ -44,6 +49,9 @@
     computed: {
       layout () {
         return this.$route.meta.layout
+      },
+      title () {
+        return this.$route.meta ? this.$route.meta.title || '' : ''
       }
     },
     mounted () {
@@ -96,6 +104,14 @@
     height: 260px;
     margin: 0 auto;
     background: url('./assets/banner_top.jpg') no-repeat;
+  }
+  .router-info{
+    width: 100%;
+    h3 {
+      width: 1000px;
+      margin: 0 auto;
+      border-bottom: #db6d4c 4px solid
+    }
   }
 }
 </style>
