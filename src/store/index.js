@@ -4,9 +4,6 @@ import { LOGIN, LOGOUT } from './mutationTypes'
 import Api from '@/api/config'
 import axios from '@/api/fetch'
 
-import admin from './admin.js'
-import home from './home.js'
-
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -44,12 +41,18 @@ const store = new Vuex.Store({
 
     getArticleList ({ state, commit }, params) {
 
-    }
-  },
+    },
+    getHomeList ({ commit }, filter) {
+      return axios.post(Api.getHomeList, filter)
+    },
 
-  modules:{
-    admin,
-    home
+    getTypeList ({ commit }, filter) {
+      return axios.post(Api.getTypeList, filter)
+    },
+
+    getContent ({ commit }, filter) {
+      return axios.post(Api.getContent, filter)
+    }
   }
 })
 
