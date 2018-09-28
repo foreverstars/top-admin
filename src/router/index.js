@@ -22,6 +22,9 @@ const routes = [
       path: '/home',
       name: 'Home',
       component: Home,
+      meta: {
+        title: '首页'
+      }
     },
     {
       path: '/program',
@@ -56,7 +59,7 @@ const routes = [
       name: 'Message',
       component: Message,
       meta: {
-        title: '信息'
+        title: '留言'
       }
     }, {
       path: '/detail/:id',

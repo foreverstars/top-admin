@@ -19,9 +19,18 @@
         </div>
       </div>
 
-      <!-- <div class="router-info" v-if="title">
-        <h3>{{title}}</h3>
-      </div> -->
+      <div class="bread" v-if="title !== '首页'">
+        <div v-if="title === '详情'" class="info info-menu">
+          <span v-for="(item, index) in breads" :key="index">
+            <router-link :to="item.path">{{ item.name}}</router-link>
+            <span v-if="index !== breads.length - 1">></span>
+          </span>
+        </div>
+        <div v-else class="info info-home">
+          <h2>{{ title }}</h2>
+          <a>返回首页>></a>
+        </div>
+      </div>
       <router-view></router-view>
     </template>
 
@@ -32,6 +41,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
   export default {
     data () {
       return {
@@ -47,11 +57,23 @@
       }
     },
     computed: {
+      ...mapState(['routeMenu']),
       layout () {
         return this.$route.meta.layout
       },
       title () {
         return this.$route.meta ? this.$route.meta.title || '' : ''
+      },
+      breads () {
+        const breads = [
+          {name: '首页', path: '/home'},
+          {name: '', path: ''}
+        ]
+        const current = this.list.find(v => v.path.indexOf(this.routeMenu) > -1)
+        breads[1].name = current.title
+        breads[1].path = current.path
+        console.log(breads)
+        return breads
       }
     },
     mounted () {
@@ -105,12 +127,43 @@
     margin: 0 auto;
     background: url('./assets/banner_top.jpg') no-repeat;
   }
-  .router-info{
+  .bread{
     width: 100%;
-    h3 {
-      width: 1000px;
+    margin-top: 10px;
+    .info {
+      width: 958px;
       margin: 0 auto;
-      border-bottom: #db6d4c 4px solid
+      border-bottom: #db6d4c 4px solid;
+      height: 40px;
+      &.info-home {
+        h2 {
+          line-height: 30px;
+          float: left;
+        }
+        a {
+          float: right;
+          line-height: 30px;
+          color: gray;
+          &:hover {
+            color: #000;
+          }
+        }
+      }
+      &.info-menu {
+        a {
+          font-size: 15px;
+          line-height: 30px;
+          color: #000;;
+          font-weight: bold;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        span{
+          margin: 0 5px;
+          font-size: 15px;
+        }
+      }
     }
   }
 }

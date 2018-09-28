@@ -38,9 +38,10 @@ export default {
     background: #559664;
     margin: 0px 0;
     padding-left: 30px;
+    display: flex;
     .photo-wall-item {
       position: relative;
-      width: 300px;
+      flex-basis: 350px;
       height: 200px;
       float: left;
       box-shadow: 0 0 10px;
@@ -72,7 +73,35 @@ export default {
       transform: scale(1.3)
     }
   }
+
+  @keyframes mymove
+  {
+    0%   {left: 100%;}
+    25%  {left: 75%;}
+    50%  {left: 50%;}
+    75%  {left: 25%;}
+    100% {left: 0%;}
+  }
+
+  @-moz-keyframes mymove
+  {
+    0%   {left: 100%;}
+    25%  {left: 75%;}
+    50%  {left: 50%;}
+    75%  {left: 25%;}
+    100% {left: 0%;}
+  }
+
   @-webkit-keyframes mymove
+  {
+    0%   {left: 100%;}
+    25%  {left: 75%;}
+    50%  {left: 50%;}
+    75%  {left: 25%;}
+    100% {left: 0%;}
+  }
+
+  @-o-keyframes mymove
   {
     0%   {left: 100%;}
     25%  {left: 75%;}

@@ -11,8 +11,9 @@ const store = new Vuex.Store({
     userInfo: {
       id: 3,
       name: 'deerschen',
-      isAdmin: 1
-    }
+      isAdmin: 1,
+    },
+    routeMenu: ''
   },
   getter: {
     hasRoutePermission: state => path => {
@@ -28,6 +29,10 @@ const store = new Vuex.Store({
 
     [LOGOUT] (state, payload) {
 
+    },
+
+    SET_ROUTE_MENU (state, payload) {
+      state.routeMenu = payload.menu
     }
   },
   actions: {
