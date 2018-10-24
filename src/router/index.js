@@ -45,14 +45,14 @@ const routes = [
       name: 'Economics',
       component: Economics,
       meta: {
-        title: '经济'
+        title: '经济学'
       }
     },{
       path: '/essay',
       name: 'Essay',
       component: Essay,
       meta: {
-        title: '文章'
+        title: '随笔'
       }
     },{
       path: '/message',

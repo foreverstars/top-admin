@@ -1,8 +1,11 @@
 <template>
   <div class="program-detail">
     <div class="detail-main">
-      <h2>{{ title }}</h2>
-        
+      <p>{{ title }}</p>
+      <span>
+        <Icon type="ios-time-outline" />
+        <span>{{ time }}</span>
+      </span>
       <div ref="content" v-html="content" class="content">
       </div>
     </div>
@@ -16,7 +19,8 @@ export default {
   data () {
     return {
       title: '',
-      content: ''
+      content: '',
+      time: ''
     }
   },
   methods: {
@@ -30,6 +34,7 @@ export default {
       if (res.data.code === 0) {
         this.title = res.data.data.title
         this.content = res.data.data.content
+        this.time = res.data.data.time
         this.$store.commit('SET_ROUTE_MENU', {
           menu: res.data.data.type
         })
@@ -50,9 +55,11 @@ export default {
     -webkit-box-sizing:border-box;
     padding: 20px 20px;
     border-radius: 5px;
-    h2 {
+    p {
       font-size: 24px;
-      margin-bottom: 20px;
+    }
+    .content{
+      margin-top: 10px;
     }
   }
 </style>

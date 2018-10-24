@@ -72,7 +72,6 @@ import { mapState } from 'vuex'
         const current = this.list.find(v => v.path.indexOf(this.routeMenu) > -1)
         breads[1].name = current.title
         breads[1].path = current.path
-        console.log(breads)
         return breads
       }
     },
