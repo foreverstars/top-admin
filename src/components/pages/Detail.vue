@@ -60,6 +60,9 @@ export default {
     }
     .content{
       margin-top: 10px;
+      font-size: 14px;
+      line-height: 28px;
+      color: #5d5d5d;
     }
   }
 </style>

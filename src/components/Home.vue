@@ -1,7 +1,6 @@
 <template>
     <div>
-        <home-photo-wall></home-photo-wall>
-        <!-- <home-content></home-content>  -->
+        <!-- <home-photo-wall></home-photo-wall> -->
         <div class="home-content">
           <article-list :data="list"></article-list>
         </div >

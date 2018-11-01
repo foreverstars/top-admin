@@ -10,11 +10,6 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': {
-        target: 'https://www.maizuo.com',
-        changeOrigin: true,
-        secure: false
-      },
       '/top-php': {
         target: 'http://127.0.0.1:80',
         changeOrigin: true,

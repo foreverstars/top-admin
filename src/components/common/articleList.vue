@@ -67,30 +67,33 @@ export default {
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       font-size: 13px;
-      color: gray;
+      color: #777;
     }
   }
   .info {
     line-height: 30px;
     span:first-child{
-      vertical-align: middle;
       i {
         color: #ff6699;
+        vertical-align: middle;
       }
       span {
         font-size: 13px;
         color: gray;
+        vertical-align: middle;
       }
     }
     span:last-child{
-      vertical-align: middle;
       margin-right: 10px;
+      vertical-align: middle;
       i {
         color: #0099ff;
+        vertical-align: middle;
       }
       span {
         font-size: 12px;
         color: gray;
+        vertical-align: middle;
       }
     }
   }

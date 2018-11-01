@@ -45,6 +45,7 @@
       width: 1000px;
       margin: 0 auto;
       height: 60px;
+      background: #BFAB86;
       .logo{
         float: left;
         line-height: 60px;

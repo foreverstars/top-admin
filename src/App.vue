@@ -1,6 +1,7 @@
 <template>
   <div id="home">
     <template v-if="layout === 'default'">
+      <div class="header">
       <div class="home-header">
         <div class="logo">
           <h1>
@@ -12,6 +13,7 @@
             <router-link :to="item.path" tag="li" active-class="active">{{item.title}}</router-link>
           </li>
         </ul>
+      </div>
       </div>
 
       <div class="home-banner">
@@ -28,7 +30,7 @@
         </div>
         <div v-else class="info info-home">
           <h2>{{ title }}</h2>
-          <a>返回首页>></a>
+          <router-link to="/">返回首页>></router-link>
         </div>
       </div>
       <router-view></router-view>
@@ -50,7 +52,7 @@ import { mapState } from 'vuex'
           {title: '首页', path: '/home'},
           {title: '编程', path: '/program'},
           {title: '阅读', path: '/reading'},
-          {title: '经济学', path: '/economics'},
+          {title: '经济', path: '/economics'},
           {title: '随笔', path: '/essay'},
           {title: '留言', path: '/message'}
         ]
@@ -81,6 +83,9 @@ import { mapState } from 'vuex'
 </script>
 
 <style lang="less" scoped>
+.header {
+  background: #BFAB86;
+}
 #home{
   width: 100%;
   height: 100%;
@@ -93,29 +98,26 @@ import { mapState } from 'vuex'
       float: left;
       line-height: 60px;
       h1 a {
-        color: pink;
+        color: #fff;
       }
     }
     .home-header-navigator{
-      float: right;
-      height: 60px;
+      display: inline-flex;
+      margin-left: 200px;
       li{
-        float: left;
-        width: 80px;
+        width: 90px;
         font-size: 16px;
         line-height: 60px;
         text-align: center;
-        margin-right: 5px;
+        color: #fff;
         cursor: pointer;
         &.active {
-          background: #f15694;
-          border-radius: 5px;
-          color: #fff;
+          // background: #fffbf0;
+          color: #000;
         }
         &:hover {
-          background: #f15694;
-          border-radius: 5px;
-          color: #fff;
+          // background: #fffbf0;
+          color: #000;
         }
       }
     }

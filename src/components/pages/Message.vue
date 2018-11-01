@@ -1,9 +1,5 @@
 <template>
-  <div class="home-content">
-    <div class="article">
-      <article-list></article-list>
-    </div>
-  </div>
+  <span></span>
 </template>
 
 <script>

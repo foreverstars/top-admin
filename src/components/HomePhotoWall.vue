@@ -36,7 +36,7 @@ export default {
     width: 100%;
     height: 400px;
     background: #559664;
-    margin: 0px 0;
+    margin: 0px auto;
     padding-left: 30px;
     display: flex;
     .photo-wall-item {

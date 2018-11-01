@@ -1,7 +1,9 @@
 <template>
-  <div class="home-content">
-    <div class="article">
-      <article-list :data="list"></article-list>
+  <div>
+    <div class="home-content">
+      <div class="article">
+        <article-list :data="list"></article-list>
+      </div>
     </div>
   </div>
 </template>
