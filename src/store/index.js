@@ -3,15 +3,16 @@ import Vuex from 'vuex'
 import { LOGIN, LOGOUT } from './mutationTypes'
 import Api from '@/api/config'
 import axios from '@/api/fetch'
+import comment from './comment'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
     userInfo: {
-      id: 3,
-      name: 'deerschen',
-      isAdmin: 1,
+      id: '',
+      username: '',
+      isAdmin: 0,
     },
     routeMenu: ''
   },
@@ -22,7 +23,7 @@ const store = new Vuex.Store({
   },
   mutations: {
     [LOGIN] (state, payload) {
-      state.userInfo.id = payload.id
+      state.userInfo.id = payload._id
       state.userInfo.name = payload.username
       state.userInfo.isAdmin = payload.isAdmin
     },
@@ -47,6 +48,7 @@ const store = new Vuex.Store({
     getArticleList ({ state, commit }, params) {
 
     },
+
     getHomeList ({ commit }, filter) {
       return axios.post(Api.getHomeList, filter)
     },
@@ -57,7 +59,19 @@ const store = new Vuex.Store({
 
     getContent ({ commit }, filter) {
       return axios.post(Api.getContent, filter)
+    },
+
+    getComment ({ commit }, filter) {
+      return axios.post(Api.getComment, filter)
+    },
+
+    commentArticle ({ commit }, data) {
+      return axios.post(Api.commentArticle, data)
     }
+  },
+
+  modules: {
+    comment
   }
 })
 

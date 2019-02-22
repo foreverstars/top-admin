@@ -32,7 +32,7 @@ export default {
   props: ['data'],
   methods: {
     goRouter(row) {
-      const id = row.id
+      const id = row._id
       this.$router.push({ name: 'Detail', params: { id } })
     }
   }

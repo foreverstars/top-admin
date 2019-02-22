@@ -10,3 +10,8 @@ export const adminOptions = [
   {name: '管理员', value: 1},
   {name: '普通用户', value: 0}
 ]
+
+export default {
+  typeOptions,
+  adminOptions
+}

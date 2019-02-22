@@ -10,8 +10,9 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/top-php': {
-        target: 'http://127.0.0.1:80',
+      '/api': {
+        target: 'http://127.0.0.1:3000',
+        pathRewrite: {'^/api' : ''},
         changeOrigin: true,
         secure: false
       },

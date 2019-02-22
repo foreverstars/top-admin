@@ -9,8 +9,7 @@ export default {
     Vue.prototype.$Message = Message
     // axios 设置
     Vue._cusHttp = Vue.prototype.$http = axios
-  
+
     //自定义其它插件
-  
   }
 }
