@@ -10,8 +10,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     userInfo: {
-      id: '',
-      username: '',
+      id: '18490328519035',
+      username: '张三',
       isAdmin: 0,
     },
     routeMenu: ''
@@ -24,7 +24,7 @@ const store = new Vuex.Store({
   mutations: {
     [LOGIN] (state, payload) {
       state.userInfo.id = payload._id
-      state.userInfo.name = payload.username
+      state.userInfo.username = payload.username
       state.userInfo.isAdmin = payload.isAdmin
     },
 
@@ -66,6 +66,9 @@ const store = new Vuex.Store({
     },
 
     commentArticle ({ commit }, data) {
+      const userInfo = state.userInfo
+      data.userId = userInfo.id
+      data.username = userinfo.username
       return axios.post(Api.commentArticle, data)
     }
   },

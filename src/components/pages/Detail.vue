@@ -12,70 +12,96 @@
 
     <!-- 评论 -->
     <div class="article-comment">
-      <h2>留言（3条）</h2>
-      <div class="comment-item">
-        <p>ym</p>
-        <div class="comment-main">终于等到了</div>
+      <h2>留言（{{commentList.length}}条）</h2>
+      <div class="comment-item" 
+        v-for="item in commentList"
+        :v-key="item._id">
+        <p>{{ item.username }}</p>
+        <div class="comment-main">{{item.comment}}</div>
         <div class="comment-time">
-          2019年2月15日 12:53
-        </div>
-      </div>
-
-      <div class="comment-item">
-        <p>ym</p>
-        <div class="comment-main">终于等到了</div>
-        <div class="comment-time">
-          2019年2月15日 12:53
-        </div>
-      </div>
-
-      <div class="comment-item">
-        <p>ym</p>
-        <div class="comment-main">终于等到了</div>
-        <div class="comment-time">
-          2019年2月15日 12:53
+          {{ item.createdAt }}
         </div>
       </div>
 
       <div class="comment-edit">
-        <Input type="textarea" :autosize="{ minRows: 3, maxRows: 6 }"/>
+        <Input v-model="commentValue" type="textarea" :autosize="{ minRows: 3, maxRows: 6 }"/>
 
-        <Button type="primary">评论一下</Button>
+        <Button type="primary" @click="handleComment">评论一下</Button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from 'vuex'
+import moment from 'moment'
 
 export default {
   data () {
     return {
       title: '',
       content: '',
-      time: ''
+      updated: '',
+      commentValue: '',
+      commentList: []
     }
   },
+  computed: {
+    time () {
+      return moment(this.updated).format('YYYY-MM-DD HH:mm:ss')
+    }
+  },
+
   methods: {
-    ...mapActions(['getContent'])
+    ...mapActions(['getContent', 'getComment', 'commentArticle']),
+    handleComment () {
+      this.$Modal.confirm({
+        title: '提示',
+        content: '确认提交评论吗？',
+        onOk: () => {
+          this.commentArticle({
+            articleId: this.$route.params.id,
+            comment: commentValue
+          }).then(() => {
+            this.commentValue = ''
+            this.getList()
+          })
+        },
+        onCancel: () => {
+          console.log('cancel')
+        }
+      })
+    },
+
+    getList () {
+      const id = this.$route.params.id
+      this.getContent({
+        id
+      }).then(res => {
+        console.log(res)
+        if (res.data.code === 0) {
+          this.title = res.data.data.title
+          this.content = res.data.data.content
+          this.updated = res.data.data.updated
+          this.$store.commit('SET_ROUTE_MENU', {
+            menu: res.data.data.type
+          })
+        } else {
+
+        }
+      })
+
+      this.getComment({
+        id
+      }).then(res => {
+        console.log(res)
+        if (res.data.code === 0) {
+        }
+      })
+    }
   },
   created () {
-    const id = this.$route.params.id
-    this.getContent({
-      id
-    }).then(res => {
-      if (res.data.code === 0) {
-        this.title = res.data.data.title
-        this.content = res.data.data.content
-        this.time = res.data.data.time
-        this.$store.commit('SET_ROUTE_MENU', {
-          menu: res.data.data.type
-        })
-      } else {
-
-      }
-    })
+    this.getList()
   }
 }
 </script>
