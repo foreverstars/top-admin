@@ -59,17 +59,6 @@ const store = new Vuex.Store({
 
     getContent ({ commit }, filter) {
       return axios.post(Api.getContent, filter)
-    },
-
-    getComment ({ commit }, filter) {
-      return axios.post(Api.getComment, filter)
-    },
-
-    commentArticle ({ commit }, data) {
-      const userInfo = state.userInfo
-      data.userId = userInfo.id
-      data.username = userinfo.username
-      return axios.post(Api.commentArticle, data)
     }
   },
 

@@ -19,7 +19,7 @@
         <p>{{ item.username }}</p>
         <div class="comment-main">{{item.comment}}</div>
         <div class="comment-time">
-          {{ item.createdAt }}
+          {{ item.created | format }}
         </div>
       </div>
 
@@ -52,8 +52,15 @@ export default {
     }
   },
 
+  filters: {
+    format (time) {
+      return moment(time).format('YYYY-MM-DD HH:mm:ss')
+    }
+  },
+
   methods: {
-    ...mapActions(['getContent', 'getComment', 'commentArticle']),
+    ...mapActions(['getContent']),
+    ...mapActions('comment', ['getComment', 'commentArticle']),
     handleComment () {
       this.$Modal.confirm({
         title: '提示',
@@ -61,7 +68,7 @@ export default {
         onOk: () => {
           this.commentArticle({
             articleId: this.$route.params.id,
-            comment: commentValue
+            comment: this.commentValue
           }).then(() => {
             this.commentValue = ''
             this.getList()
@@ -78,7 +85,6 @@ export default {
       this.getContent({
         id
       }).then(res => {
-        console.log(res)
         if (res.data.code === 0) {
           this.title = res.data.data.title
           this.content = res.data.data.content
@@ -92,10 +98,10 @@ export default {
       })
 
       this.getComment({
-        id
+        articleId: id
       }).then(res => {
-        console.log(res)
         if (res.data.code === 0) {
+          this.commentList = res.data.data
         }
       })
     }
@@ -149,6 +155,7 @@ export default {
         button {
           float: right;
           margin-top: 10px;
+          margin-bottom: 20px;
         }
       }
     }
