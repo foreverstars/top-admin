@@ -54,7 +54,7 @@ import { mapState } from 'vuex'
           {title: '阅读', path: '/reading'},
           {title: '经济', path: '/economics'},
           {title: '随笔', path: '/essay'},
-          {title: '留言', path: '/message'}
+          // {title: '留言', path: '/message'}
         ]
       }
     },
@@ -85,6 +85,10 @@ import { mapState } from 'vuex'
 <style lang="less" scoped>
 .header {
   background: #BFAB86;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
 }
 #home{
   width: 100%;
@@ -126,6 +130,7 @@ import { mapState } from 'vuex'
     width: 100%;
     height: 260px;
     margin: 0 auto;
+    margin-top: 60px;
     background: url('./assets/banner_top.jpg') no-repeat;
   }
   .bread{

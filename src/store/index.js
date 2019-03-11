@@ -14,7 +14,8 @@ const store = new Vuex.Store({
       username: '张三',
       isAdmin: 0,
     },
-    routeMenu: ''
+    routeMenu: '',
+    blogTypes: []
   },
   getter: {
     hasRoutePermission: state => path => {
@@ -34,6 +35,10 @@ const store = new Vuex.Store({
 
     SET_ROUTE_MENU (state, payload) {
       state.routeMenu = payload.menu
+    },
+
+    SET_BLOG_TYPES (state, payload) {
+      state.blogTypes = payload.list
     }
   },
   actions: {
@@ -59,6 +64,14 @@ const store = new Vuex.Store({
 
     getContent ({ commit }, filter) {
       return axios.post(Api.getContent, filter)
+    },
+
+    getTypes ({ commit }) {
+      return axios.post(Api.getBlogTypes).then(res => {
+        commit('SET_BLOG_TYPES', {
+          list: res.data.data
+        })
+      })
     }
   },
 

@@ -11,5 +11,6 @@ export default {
     getHomeList: base + '/homeList',
     getContent: base + '/getContent',
     getComment: base + '/getComment',
-    commentArticle: base + '/commentArticle'
+    commentArticle: base + '/commentArticle',
+    getBlogTypes: base + '/getBlogTypes'
 }
