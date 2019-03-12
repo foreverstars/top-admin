@@ -13,6 +13,22 @@
             <router-link :to="item.path" tag="li" active-class="active">{{item.title}}</router-link>
           </li>
         </ul>
+        <div class="user-info">
+          <template v-if="isLogin">
+            <Dropdown @on-click="handleLogout">
+              <a href="javascript:void(0)">
+                {{ name }}
+                <Icon type="ios-arrow-down"></Icon>
+              </a>
+              <DropdownMenu slot="list">
+                <DropdownItem>退出登录</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </template>
+          <a v-else href="javascript:void(0)" @click="handleLogin">
+            登录
+          </a>
+        </div>
       </div>
       </div>
 
@@ -44,6 +60,8 @@
 
 <script>
 import { mapState } from 'vuex'
+import { getCookie } from '@/utils/common'
+
   export default {
     data () {
       return {
@@ -75,6 +93,24 @@ import { mapState } from 'vuex'
         breads[1].name = current.title
         breads[1].path = current.path
         return breads
+      },
+      isLogin () {
+        const isLogin = getCookie('isLogin')
+        const username = getCookie('username')
+        return isLogin && username
+      },
+      name () {
+        const username = getCookie('username')
+        return username
+      }
+    },
+    methods: {
+      handleLogin () {
+        this.$router.push('/login')
+      },
+      handleLogout () {
+        this.$store.commit('LOGOUT')
+        window.location.reload()
       }
     },
     mounted () {
@@ -124,6 +160,11 @@ import { mapState } from 'vuex'
           color: #000;
         }
       }
+    }
+    .user-info {
+      float: right;
+      line-height: 60px;
+      font-size: 14px;
     }
   }
   .home-banner{

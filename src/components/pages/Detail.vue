@@ -35,6 +35,7 @@
 <script>
 import { mapActions } from 'vuex'
 import moment from 'moment'
+import { getCookie } from '@/utils/common'
 
 export default {
   data () {
@@ -62,6 +63,13 @@ export default {
     ...mapActions(['getContent']),
     ...mapActions('comment', ['getComment', 'commentArticle']),
     handleComment () {
+      const isLogin = getCookie('isLogin')
+
+      if (!isLogin) {
+        this.$Message.warning('请先登录再评论')
+        return
+      }
+
       this.$Modal.confirm({
         title: '提示',
         content: '确认提交评论吗？',

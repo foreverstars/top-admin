@@ -11,6 +11,9 @@ import Detail from '@/components/pages/Detail'
 
 import Home from '@/components/Home'
 import NotFound from '@/components/NotFound'
+import Register from '@/components/Register'
+import Login from '@/components/Login'
+
 Vue.use(Router)
 
 const routes = [
@@ -75,6 +78,22 @@ const routes = [
       name: 'NotFound',
       meta: {
         layout: '404'
+      }
+    },
+    {
+      path: '/register',
+      component: Register,
+      name: 'Register',
+      meta: {
+        layout: 'other'
+      }
+    },
+    {
+      path: '/login',
+      component: Login,
+      name: 'Login',
+      meta: {
+        layout: 'other'
       }
     },
     {

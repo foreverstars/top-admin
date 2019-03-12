@@ -4,15 +4,15 @@ import { LOGIN, LOGOUT } from './mutationTypes'
 import Api from '@/api/config'
 import axios from '@/api/fetch'
 import comment from './comment'
+import { setCookie, getCookie } from '@/utils/common'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
     userInfo: {
-      id: '18490328519035',
-      username: '张三',
-      isAdmin: 0,
+      id: '',
+      username: ''
     },
     routeMenu: '',
     blogTypes: []
@@ -24,13 +24,25 @@ const store = new Vuex.Store({
   },
   mutations: {
     [LOGIN] (state, payload) {
-      state.userInfo.id = payload._id
-      state.userInfo.username = payload.username
-      state.userInfo.isAdmin = payload.isAdmin
+      if (typeof payload !== 'undefined') {
+        state.userInfo.id = payload.userId || ''
+        state.userInfo.username = payload.username || ''
+  
+        setCookie('username', payload.username)
+        setCookie('userId', payload.userId)
+        setCookie('isLogin', true)
+      } else {
+        if (getCookie('username') && getCookie('userId')) {
+          state.userInfo.id = getCookie('userId')
+          state.userInfo.username = getCookie('username')
+        }
+      }
     },
 
     [LOGOUT] (state, payload) {
-
+      setCookie('username', '')
+      setCookie('userId', '')
+      setCookie('isLogin', false)
     },
 
     SET_ROUTE_MENU (state, payload) {
@@ -72,6 +84,11 @@ const store = new Vuex.Store({
           list: res.data.data
         })
       })
+    },
+
+    initCommon ({ commit, dispatch }) {
+      dispatch('getTypes')
+      commit('LOGIN')
     }
   },
 

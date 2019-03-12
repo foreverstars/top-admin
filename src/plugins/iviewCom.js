@@ -18,7 +18,10 @@ import {
   Select,
   Option,
   Switch,
-  Card
+  Card,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem
 } from 'iview'
 
 
@@ -41,3 +44,6 @@ Vue.component('Select', Select)
 Vue.component('Option', Option)
 Vue.component('i-switch', Switch)
 Vue.component('Card', Card)
+Vue.component('Dropdown', Dropdown)
+Vue.component('DropdownMenu', DropdownMenu)
+Vue.component('DropdownItem', DropdownItem)
