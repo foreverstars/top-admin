@@ -17,9 +17,13 @@ const store = new Vuex.Store({
     routeMenu: '',
     blogTypes: []
   },
-  getter: {
-    hasRoutePermission: state => path => {
-      return path
+  getters: {
+    isLogin (state) {
+      return state.userInfo.id
+    },
+
+    username (state) {
+      return state.userInfo.username
     }
   },
   mutations: {

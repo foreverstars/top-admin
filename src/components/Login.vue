@@ -40,18 +40,18 @@ import { mapActions, mapMutations } from 'vuex'
     data () {
       return {
         formInline: {
-            username: '',
-            password: '',
-            rememberPwd: false
+          username: '',
+          password: '',
+          rememberPwd: false
         },
         ruleInline: {
-            username: [
-                { required: true, message: 'Please fill in the username', trigger: 'blur' }
-            ],
-            password: [
-                { required: true, message: 'Please fill in the password.', trigger: 'blur' },
-                { type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
-            ]
+          username: [
+              { required: true, message: 'Please fill in the username', trigger: 'blur' }
+          ],
+          password: [
+              { required: true, message: 'Please fill in the password.', trigger: 'blur' },
+              { type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
+          ]
         }
       }
     },
@@ -69,7 +69,7 @@ import { mapActions, mapMutations } from 'vuex'
                 this.$Message.success(res.data.message)
                 this.LOGIN(res.data.data)
                 this.$router.push({
-                    path: '/home'
+                  path: '/home'
                 })
               } else {
                 this.$Message.error(res.data.message)

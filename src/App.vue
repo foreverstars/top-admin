@@ -17,7 +17,7 @@
           <template v-if="isLogin">
             <Dropdown @on-click="handleLogout">
               <a href="javascript:void(0)">
-                {{ name }}
+                {{ username }}
                 <Icon type="ios-arrow-down"></Icon>
               </a>
               <DropdownMenu slot="list">
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import { getCookie } from '@/utils/common'
 
   export default {
@@ -78,6 +78,7 @@ import { getCookie } from '@/utils/common'
     },
     computed: {
       ...mapState(['routeMenu']),
+      ...mapGetters(['isLogin', 'username']),
       layout () {
         return this.$route.meta.layout
       },
@@ -93,15 +94,6 @@ import { getCookie } from '@/utils/common'
         breads[1].name = current.title
         breads[1].path = current.path
         return breads
-      },
-      isLogin () {
-        const isLogin = getCookie('isLogin')
-        const username = getCookie('username')
-        return isLogin && username
-      },
-      name () {
-        const username = getCookie('username')
-        return username
       }
     },
     methods: {
