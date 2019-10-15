@@ -25,6 +25,7 @@
 <script>
 import moment from 'moment'
 import { mapState } from 'vuex'
+import { typeOptions } from "@/utils/dict"
 
 export default {
   data() {
@@ -47,8 +48,11 @@ export default {
       this.$router.push({ name: 'Detail', params: { id } })
     },
 
+    // formatName (val) {
+    //   return this.blogTypes.find(v => v.type === val) ? this.blogTypes.find(v => v.type === val).name : ''
+    // }
     formatName (val) {
-      return this.blogTypes.find(v => v.type === val) ? this.blogTypes.find(v => v.type === val).name : ''
+      return typeOptions.find(v => v.value === val) ? typeOptions.find(v => v.value === val).name : ''
     }
   }
 }
