@@ -15,13 +15,14 @@
         </ul>
         <div class="user-info">
           <template v-if="isLogin">
-            <Dropdown @on-click="handleLogout">
+            <Dropdown @on-click="handleCommand">
               <a href="javascript:void(0)">
-                {{ username }}
+                {{ nickname }}
                 <Icon type="ios-arrow-down"></Icon>
               </a>
               <DropdownMenu slot="list">
-                <DropdownItem>退出登录</DropdownItem>
+                <DropdownItem name="1">个人信息</DropdownItem>
+                <DropdownItem name="2">退出登录</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </template>
@@ -78,7 +79,7 @@ import { getCookie } from '@/utils/common'
     },
     computed: {
       ...mapState(['routeMenu']),
-      ...mapGetters(['isLogin', 'username']),
+      ...mapGetters(['isLogin', 'username', 'nickname']),
       layout () {
         return this.$route.meta.layout
       },
@@ -100,9 +101,19 @@ import { getCookie } from '@/utils/common'
       handleLogin () {
         this.$router.push('/login')
       },
+      handleCommand (command) {
+        if (command == 1) {
+          this.handleInfo()
+        } else {
+          this.handleLogout()
+        }
+      },
       handleLogout () {
         this.$store.commit('LOGOUT')
         window.location.reload()
+      },
+      handleInfo () {
+        this.$router.push('/personal')
       }
     },
     mounted () {
@@ -117,6 +128,7 @@ import { getCookie } from '@/utils/common'
   left: 0;
   top: 0;
   right: 0;
+  z-index: 900;
 }
 #home{
   width: 100%;

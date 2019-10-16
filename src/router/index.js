@@ -8,6 +8,7 @@ import Economics from '@/components/pages/Economics'
 import Essay from '@/components/pages/Essay'
 import Message from '@/components/pages/Message'
 import Detail from '@/components/pages/Detail'
+import Personal from '@/components/pages/Personal'
 
 import Home from '@/components/Home'
 import NotFound from '@/components/NotFound'
@@ -70,6 +71,14 @@ const routes = [
       component: Detail,
       meta: {
         title: '详情'
+      }
+    },
+    {
+      path: '/personal',
+      name: 'Personal',
+      component: Personal,
+      meta: {
+        title: '个人信息'
       }
     },
     {

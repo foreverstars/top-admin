@@ -12,7 +12,8 @@ const store = new Vuex.Store({
   state: {
     userInfo: {
       id: '',
-      username: ''
+      username: '',
+      nickname: ''
     },
     routeMenu: '',
     blogTypes: []
@@ -24,6 +25,10 @@ const store = new Vuex.Store({
 
     username (state) {
       return state.userInfo.username
+    },
+
+    nickname (state) {
+      return state.userInfo.nickname
     }
   },
   mutations: {
@@ -31,14 +36,17 @@ const store = new Vuex.Store({
       if (typeof payload !== 'undefined') {
         state.userInfo.id = payload.userId || ''
         state.userInfo.username = payload.username || ''
+        state.userInfo.nickname = payload.nickname || ''
   
         setCookie('username', payload.username)
         setCookie('userId', payload.userId)
+        setCookie('nickname', payload.nickname)
         setCookie('isLogin', true)
       } else {
-        if (getCookie('username') && getCookie('userId')) {
+        if (getCookie('username') && getCookie('userId') && getCookie('nickname')) {
           state.userInfo.id = getCookie('userId')
           state.userInfo.username = getCookie('username')
+          state.userInfo.nickname = getCookie('nickname')
         }
       }
     },
@@ -46,6 +54,7 @@ const store = new Vuex.Store({
     [LOGOUT] (state, payload) {
       setCookie('username', '')
       setCookie('userId', '')
+      setCookie('nickname', '')
       setCookie('isLogin', false)
     },
 
@@ -64,6 +73,16 @@ const store = new Vuex.Store({
 
     login ({ state, commit}, data) {
       return axios.post(Api.login, data)
+    },
+
+    getUserInfo ({state, commit}) {
+      axios.post(Api.getUserInfo, {
+        id: state.userInfo.id
+      }).then(res => {
+        if (res.data.code === 0) {
+          commit('LOGIN', res.data.data);
+        }
+      })
     },
 
     getArticleList ({ state, commit }, params) {
@@ -87,6 +106,12 @@ const store = new Vuex.Store({
         commit('SET_BLOG_TYPES', {
           list: res.data.data
         })
+      })
+    },
+
+    updatePersonal ({ state, commit, dispatch}, params) {
+      return axios.post(Api.updatePersonal, {...params, id: state.userInfo.id}).then(res => {
+        dispatch('getUserInfo');
       })
     },
 

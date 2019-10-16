@@ -78,6 +78,7 @@ export default {
             articleId: this.$route.params.id,
             comment: this.commentValue
           }).then(() => {
+            this.$Message.success('评论成功');
             this.commentValue = ''
             this.getList()
           })

@@ -18,6 +18,7 @@ export default {
       const userInfo = rootState.userInfo
       data.userId = userInfo.id
       data.username = userInfo.username
+      data.nickname = userInfo.nickname
       return axios.post(Api.commentArticle, data)
     }
   }
