@@ -39,7 +39,7 @@ export default {
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-            this.updatePersonal(formInline).then(()=>{
+            this.updatePersonal(this.formInline).then(()=>{
               this.$Message.success('修改成功');
               this.$router.push('/');
             })

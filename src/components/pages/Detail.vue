@@ -16,7 +16,7 @@
       <div class="comment-item" 
         v-for="item in commentList"
         :v-key="item._id">
-        <p>{{ item.username }}</p>
+        <p>{{ item.nickname || item.username }}</p>
         <div class="comment-main">{{item.comment}}</div>
         <div class="comment-time">
           {{ item.created | format }}

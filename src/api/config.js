@@ -6,7 +6,7 @@ export default {
     login: base + '/login',
     register: base + '/register',
     getUserInfo: base + '/getUserinfo',
-    updatePersonal: base + 'updatePersonal',
+    updatePersonal: base + '/updatePersonal',
     saveArticle: base + '/addArticle',
     getTypeList: base + '/typeList',
     getUserList: base + '/userList',
