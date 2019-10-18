@@ -17,15 +17,32 @@
         v-for="item in commentList"
         :v-key="item._id">
         <p>{{ item.nickname || item.username }}</p>
-        <div class="comment-main">{{item.comment}}</div>
+        <div class="comment-main" v-html="item.comment"></div>
         <div class="comment-time">
           {{ item.created | format }}
         </div>
       </div>
 
       <div class="comment-edit">
-        <Input v-model="commentValue" type="textarea" :autosize="{ minRows: 3, maxRows: 6 }"/>
-
+        <!-- <Input v-model="commentValue" type="textarea" :autosize="{ minRows: 3, maxRows: 6 }"/> -->
+        <div class="comment-content" contenteditable="true"></div>
+        <Poptip
+          placement="left-end">
+          <div class="emoij-box" @click="eomijShow" >
+            <div class="emoij-btn"></div><span>表情</span>
+          </div>
+          <div slot="content">
+            <!-- 评论表情 -->
+            <ul class="category">
+              <li v-for="(item, ind) in categoryList" :v-key="ind" @click="chooseEmoij(item)">
+                <img class="emoji" draggable="false" :src="item">
+              </li>
+            </ul>
+            <ul class="nextpage">
+              <li v-for="item in pages" :key="item" :class="{active: page === item}" @click="handlePage(item)"></li>
+            </ul>
+          </div>
+        </Poptip>
         <Button type="primary" @click="handleComment">评论一下</Button>
       </div>
     </div>
@@ -36,6 +53,7 @@
 import { mapActions } from 'vuex'
 import moment from 'moment'
 import { getCookie } from '@/utils/common'
+import { list } from '@/utils/emoij'
 
 export default {
   data () {
@@ -44,7 +62,10 @@ export default {
       content: '',
       updated: '',
       commentValue: '',
-      commentList: []
+      commentList: [],
+      categoryList: [],
+      page: 0,
+      pages: [0,1,2]
     }
   },
   computed: {
@@ -62,6 +83,18 @@ export default {
   methods: {
     ...mapActions(['getContent']),
     ...mapActions('comment', ['getComment', 'commentArticle']),
+    eomijShow () {
+
+    },
+    handlePage (index) {
+      this.categoryList = list.slice(54*index, 54*(index + 1))
+      this.page = index
+    },
+    chooseEmoij (src) {
+      let contentDom = document.querySelector(".comment-content");
+      var imgHtml ='<img class="emoji" style="width: 22px;height: 22px;display: inline-block;vertical-align: top;" draggable="false" src="' + src + '">';
+      contentDom.innerHTML = contentDom.innerHTML + imgHtml
+    },
     handleComment () {
       const isLogin = getCookie('isLogin')
 
@@ -69,17 +102,23 @@ export default {
         this.$Message.warning('请先登录再评论')
         return
       }
-
+      let contentDom = document.querySelector(".comment-content"); 
+      let comment = contentDom.innerHTML;
+      if (!comment) {
+        this.$Message.warning('请输入评论')
+        return
+      }
       this.$Modal.confirm({
         title: '提示',
         content: '确认提交评论吗？',
         onOk: () => {
           this.commentArticle({
             articleId: this.$route.params.id,
-            comment: this.commentValue
+            // comment: this.commentValue
+            comment:comment
           }).then(() => {
             this.$Message.success('评论成功');
-            this.commentValue = ''
+            contentDom.innerHTML = ''
             this.getList()
           })
         },
@@ -116,6 +155,7 @@ export default {
     }
   },
   created () {
+    this.categoryList = list.slice(0, 54)
     this.getList()
   }
 }
@@ -166,6 +206,96 @@ export default {
           margin-top: 10px;
           margin-bottom: 20px;
         }
+      }
+    }
+  }
+  .comment-content {
+    min-height: 60px;
+    color: #17181a;
+    padding: 8px 10px;
+    border: 1px solid #dcdee2;
+    border-radius: 4px;
+    color: #515a6e;
+    background-color: #fff;
+    background-image: none;
+    position: relative;
+    cursor: text;
+    font-size: 14px;
+    transition: border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out;
+    &:focus {
+      border-color: #57a3f3;
+      outline: 0;
+      box-shadow: 0 0 0 2px rgba(45,140,240,.2);
+    }
+    &:before {
+      content: attr(placeholder);
+      position: absolute;
+      opacity: .4;
+      pointer-events: none;
+      user-select: none;
+    }
+    img {
+      width: 22px;
+      height: 22px;
+      display: block;
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+  .emoij-box {
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: #027fff;
+    cursor: pointer;
+  }
+  .emoij-btn {
+    width: 18px;
+    height: 18px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/emoji.5594dbb.svg);
+  }
+  .category{
+    max-width: 280px;
+    max-height: 225px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 16px;
+    li {
+      padding: 5px 4.5px;
+      cursor: pointer;
+      .emoji {
+        width: 22px;
+        height: 22px;
+        display: block;
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+  .nextpage {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    li {
+      margin: 0 5px;
+      width: 6px;
+      height: 6px;
+      border-radius: 100%;
+      background-color: #f0f0f0;
+      cursor: pointer;
+      &.active {
+        cursor: default;
+        background-color: #d8d8d8;
       }
     }
   }

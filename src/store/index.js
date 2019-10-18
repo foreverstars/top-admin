@@ -5,6 +5,7 @@ import Api from '@/api/config'
 import axios from '@/api/fetch'
 import comment from './comment'
 import { setCookie, getCookie } from '@/utils/common'
+import qs from 'qs'
 
 Vue.use(Vuex)
 
@@ -64,6 +65,10 @@ const store = new Vuex.Store({
 
     SET_BLOG_TYPES (state, payload) {
       state.blogTypes = payload.list
+    },
+
+    UPDATE_PHOTO (state, payload) {
+      state.userInfo.photo = payload.data
     }
   },
   actions: {
@@ -112,6 +117,19 @@ const store = new Vuex.Store({
     updatePersonal ({ state, commit, dispatch}, params) {
       return axios.post(Api.updatePersonal, {...params, id: state.userInfo.id}).then(res => {
         dispatch('getUserInfo');
+      })
+    },
+
+    uploadPhoto ({ state, commit }, params) {
+      return axios({
+        url: Api.uploadPhoto, 
+        data: params,
+        method: 'post'
+      })
+        .then(res => {
+        commit('UPDATE_PHOTO', {
+          data: res.data.data.photo
+        })
       })
     },
 

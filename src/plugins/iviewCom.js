@@ -21,7 +21,8 @@ import {
   Card,
   Dropdown,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Poptip
 } from 'iview'
 
 
@@ -47,3 +48,5 @@ Vue.component('Card', Card)
 Vue.component('Dropdown', Dropdown)
 Vue.component('DropdownMenu', DropdownMenu)
 Vue.component('DropdownItem', DropdownItem)
+Vue.component('Poptip', Poptip)
+

@@ -4,18 +4,12 @@ import axios from 'axios'
 import router from '../router'
 import { Message } from 'iview'
 
-axios.defaults.timeout = 10000
+const Axios = axios.create({
+})
+
+Axios.defaults.timeout = 10000
 
 // http request 拦截器
-axios.interceptors.request.use(
-  config => {
-    // 拦截器可以给请求加上token
-    return config
-  },
-  err => {
-    return Promise.reject(err)
-  }
-)         
 
 // http response 拦截器 
 /*
@@ -46,5 +40,5 @@ axios.interceptors.response.use(
   }
 )
 */
-export default axios
+export default Axios
 
