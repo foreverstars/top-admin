@@ -1,13 +1,19 @@
 // 配置所有请求的接口地址
 
-const base = '/top-php'
+const base = '/api'
 
 export default {
-    login: base + '/login.php',
-    register: base + '/register.php',
-    saveArticle: base + '/addArticle.php',
-    getTypeList: base + '/typeList.php',
-    getUserList: base + '/userList.php',
-    getHomeList: base + '/homeList.php',
-    getContent: base + '/getContent.php'
+    login: base + '/login',
+    register: base + '/register',
+    getUserInfo: base + '/getUserinfo',
+    updatePersonal: base + '/updatePersonal',
+    uploadPhoto: base + '/uploadPhoto',
+    saveArticle: base + '/addArticle',
+    getTypeList: base + '/typeList',
+    getUserList: base + '/userList',
+    getHomeList: base + '/homeList',
+    getContent: base + '/getContent',
+    getComment: base + '/getComment',
+    commentArticle: base + '/commentArticle',
+    getBlogTypes: base + '/getBlogTypes'
 }

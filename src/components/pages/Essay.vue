@@ -1,12 +1,6 @@
 <template>
-  <div class="home-program">
-    
-    <div class="program-banner">
-      <div class="program-banner-word">
-      </div>
-    </div>
-
-    <div class="program-article">
+  <div class="home-content">
+    <div class="article">
       <article-list :data="list"></article-list>
     </div>
   </div>
@@ -27,7 +21,7 @@ export default {
     'article-list': ArticleList
   },
   methods: {
-    ...mapActions('home', ['getTypeList'])
+    ...mapActions(['getTypeList'])
   },
   created () {
     this.getTypeList({
@@ -43,21 +37,3 @@ export default {
 }
 
 </script>
-
-<style lang="less" scoped>
-  .home-program{
-    width: 100%;
-    .program-banner{
-      width: 100%;
-      height: 260px;
-      margin: 0 auto;
-      background: url('../../../assets/banner_top.jpg') no-repeat;
-    }
-    .program-article{
-      width: 1000px;
-      height: 1238px;
-      margin: 0 auto;
-    }
-  }
-</style>
-

@@ -5,16 +5,16 @@
         <h2>{{ item.title }}</h2>
         <div class="desc">
           <img :src="defaultUrl"/>
-          <p>{{ item.brief }}</p>
+          <p>{{ item.brief }}......</p>
         </div>
         <div class="info">
           <span>
             <Icon type="ios-pricetag" />
-            <span>{{ item.type }}</span>
+            <span>{{ formatName(item.type) }}</span>
           </span>
           <span>
-            <Icon type="md-time" />
-            <span>{{ item.time }}</span>
+            <Icon type="ios-time-outline" />
+            <span>{{ item.created | format }}</span>
           </span>
         </div>
       </Card>
@@ -23,6 +23,10 @@
 </template>
 
 <script>
+import moment from 'moment'
+import { mapState } from 'vuex'
+import { typeOptions } from "@/utils/dict"
+
 export default {
   data() {
     return {
@@ -30,10 +34,25 @@ export default {
     }
   },
   props: ['data'],
+  computed: {
+    ...mapState(['blogTypes'])
+  },
+  filters: {
+    format (time) {
+      return moment(time).format('YYYY-MM-DD HH:mm:ss')
+    }
+  },
   methods: {
     goRouter(row) {
-      const id = row.id
+      const id = row._id
       this.$router.push({ name: 'Detail', params: { id } })
+    },
+
+    // formatName (val) {
+    //   return this.blogTypes.find(v => v.type === val) ? this.blogTypes.find(v => v.type === val).name : ''
+    // }
+    formatName (val) {
+      return typeOptions.find(v => v.value === val) ? typeOptions.find(v => v.value === val).name : ''
     }
   }
 }
@@ -67,12 +86,34 @@ export default {
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       font-size: 13px;
-      color: gray;
+      color: #777;
     }
   }
   .info {
+    line-height: 30px;
+    span:first-child{
+      i {
+        color: #ff6699;
+        vertical-align: middle;
+      }
+      span {
+        font-size: 13px;
+        color: gray;
+        vertical-align: middle;
+      }
+    }
     span:last-child{
       margin-right: 10px;
+      vertical-align: top;
+      i {
+        color: #0099ff;
+        vertical-align: middle;
+      }
+      span {
+        font-size: 12px;
+        color: gray;
+        vertical-align: middle;
+      }
     }
   }
 }

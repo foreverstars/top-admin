@@ -3,34 +3,72 @@ import Vuex from 'vuex'
 import { LOGIN, LOGOUT } from './mutationTypes'
 import Api from '@/api/config'
 import axios from '@/api/fetch'
-
-import admin from './admin.js'
-import home from './home.js'
+import comment from './comment'
+import { setCookie, getCookie } from '@/utils/common'
+import qs from 'qs'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
     userInfo: {
-      id: 3,
-      name: 'deerschen',
-      isAdmin: 1
-    }
+      id: '',
+      username: '',
+      nickname: ''
+    },
+    routeMenu: '',
+    blogTypes: []
   },
-  getter: {
-    hasRoutePermission: state => path => {
-      return path
+  getters: {
+    isLogin (state) {
+      return state.userInfo.id
+    },
+
+    username (state) {
+      return state.userInfo.username
+    },
+
+    nickname (state) {
+      return state.userInfo.nickname
     }
   },
   mutations: {
     [LOGIN] (state, payload) {
-      state.userInfo.id = payload.id
-      state.userInfo.name = payload.username
-      state.userInfo.isAdmin = payload.isAdmin
+      if (typeof payload !== 'undefined') {
+        state.userInfo.id = payload.userId || ''
+        state.userInfo.username = payload.username || ''
+        state.userInfo.nickname = payload.nickname || ''
+  
+        setCookie('username', payload.username)
+        setCookie('userId', payload.userId)
+        setCookie('nickname', payload.nickname)
+        setCookie('isLogin', true)
+      } else {
+        if (getCookie('username') && getCookie('userId') && getCookie('nickname')) {
+          state.userInfo.id = getCookie('userId')
+          state.userInfo.username = getCookie('username')
+          state.userInfo.nickname = getCookie('nickname')
+        }
+      }
     },
 
     [LOGOUT] (state, payload) {
+      setCookie('username', '')
+      setCookie('userId', '')
+      setCookie('nickname', '')
+      setCookie('isLogin', false)
+    },
 
+    SET_ROUTE_MENU (state, payload) {
+      state.routeMenu = payload.menu
+    },
+
+    SET_BLOG_TYPES (state, payload) {
+      state.blogTypes = payload.list
+    },
+
+    UPDATE_PHOTO (state, payload) {
+      state.userInfo.photo = payload.data
     }
   },
   actions: {
@@ -42,14 +80,67 @@ const store = new Vuex.Store({
       return axios.post(Api.login, data)
     },
 
+    getUserInfo ({state, commit}) {
+      axios.post(Api.getUserInfo, {
+        id: state.userInfo.id
+      }).then(res => {
+        if (res.data.code === 0) {
+          commit('LOGIN', res.data.data);
+        }
+      })
+    },
+
     getArticleList ({ state, commit }, params) {
 
+    },
+
+    getHomeList ({ commit }, filter) {
+      return axios.post(Api.getHomeList, filter)
+    },
+
+    getTypeList ({ commit }, filter) {
+      return axios.post(Api.getTypeList, filter)
+    },
+
+    getContent ({ commit }, filter) {
+      return axios.post(Api.getContent, filter)
+    },
+
+    getTypes ({ commit }) {
+      return axios.post(Api.getBlogTypes).then(res => {
+        commit('SET_BLOG_TYPES', {
+          list: res.data.data
+        })
+      })
+    },
+
+    updatePersonal ({ state, commit, dispatch}, params) {
+      return axios.post(Api.updatePersonal, {...params, id: state.userInfo.id}).then(res => {
+        dispatch('getUserInfo');
+      })
+    },
+
+    uploadPhoto ({ state, commit }, params) {
+      return axios({
+        url: Api.uploadPhoto, 
+        data: params,
+        method: 'post'
+      })
+        .then(res => {
+        commit('UPDATE_PHOTO', {
+          data: res.data.data.photo
+        })
+      })
+    },
+
+    initCommon ({ commit, dispatch }) {
+      dispatch('getTypes')
+      commit('LOGIN')
     }
   },
 
-  modules:{
-    admin,
-    home
+  modules: {
+    comment
   }
 })
 

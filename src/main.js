@@ -22,6 +22,9 @@ Vue.use(Plugins)
 
 Vue.prototype.$http = axios
 
+store.dispatch('initCommon')
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -23,10 +23,10 @@
       return {
         isHomePage: true,
         list: [
-          {title: '编程', path: '/home/program'}, 
-          {title: '阅读', path: '/home/reading'}, 
+          {title: '编程', path: '/home/program'},
+          {title: '阅读', path: '/home/reading'},
           {title: '经济学', path: '/home/economics'},
-          {title: '随笔', path: '/home/essay'}, 
+          {title: '随笔', path: '/home/essay'},
           {title: '留言', path: '/home/message'}
         ]
       }
@@ -45,6 +45,7 @@
       width: 1000px;
       margin: 0 auto;
       height: 60px;
+      background: #BFAB86;
       .logo{
         float: left;
         line-height: 60px;
