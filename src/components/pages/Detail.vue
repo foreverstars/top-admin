@@ -16,6 +16,8 @@
       <div class="comment-item" 
         v-for="item in commentList"
         :v-key="item._id">
+        <span class="personal-photo" v-if="item.photo" v-bind:style="{ backgroundImage: 'url(' + item.photo + ')'}"></span>
+        <span class="personal-no-photo" v-else></span>
         <p>{{ item.nickname || item.username }}</p>
         <div class="comment-main" v-html="item.comment"></div>
         <div class="comment-time">
@@ -54,7 +56,6 @@ import { mapActions } from 'vuex'
 import moment from 'moment'
 import { getCookie } from '@/utils/common'
 import { list } from '@/utils/emoij'
-
 export default {
   data () {
     return {
@@ -190,9 +191,12 @@ export default {
         p {
           font-size: 16px;
           line-height: 30px;
-          color: #e74851;
+          color: #e74851;          
+          display: inline-block;
+          vertical-align: middle;
         }
         .comment-main {
+          margin-top: 10px;
           line-height: 30px;
         }
         .comment-time {
@@ -299,5 +303,20 @@ export default {
       }
     }
   }
+
+  .personal-photo,  .personal-no-photo{
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  margin-right:5px;
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #eee;
+}
+.personal-no-photo{
+  background-image: url("../../assets/no-photo.jpg");
+}
 </style>
 

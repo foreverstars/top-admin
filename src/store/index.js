@@ -5,7 +5,6 @@ import Api from '@/api/config'
 import axios from '@/api/fetch'
 import comment from './comment'
 import { setCookie, getCookie } from '@/utils/common'
-import qs from 'qs'
 
 Vue.use(Vuex)
 
@@ -14,7 +13,8 @@ const store = new Vuex.Store({
     userInfo: {
       id: '',
       username: '',
-      nickname: ''
+      nickname: '',
+      photo: ''
     },
     routeMenu: '',
     blogTypes: []
@@ -38,6 +38,7 @@ const store = new Vuex.Store({
         state.userInfo.id = payload.userId || ''
         state.userInfo.username = payload.username || ''
         state.userInfo.nickname = payload.nickname || ''
+        state.userInfo.photo = payload.photo || ''
   
         setCookie('username', payload.username)
         setCookie('userId', payload.userId)
@@ -46,8 +47,6 @@ const store = new Vuex.Store({
       } else {
         if (getCookie('username') && getCookie('userId') && getCookie('nickname')) {
           state.userInfo.id = getCookie('userId')
-          state.userInfo.username = getCookie('username')
-          state.userInfo.nickname = getCookie('nickname')
         }
       }
     },
@@ -134,8 +133,8 @@ const store = new Vuex.Store({
     },
 
     initCommon ({ commit, dispatch }) {
-      dispatch('getTypes')
       commit('LOGIN')
+      dispatch('getUserInfo');
     }
   },
 

@@ -15,6 +15,7 @@
         </ul>
         <div class="user-info">
           <template v-if="isLogin">
+            <span class="personal-photo" v-if="userInfo.photo" v-bind:style="{ backgroundImage: 'url(' + userInfo.photo + ')'}"></span>
             <Dropdown @on-click="handleCommand">
               <a href="javascript:void(0)">
                 {{ nickname }}
@@ -78,7 +79,7 @@ import { getCookie } from '@/utils/common'
       }
     },
     computed: {
-      ...mapState(['routeMenu']),
+      ...mapState(['routeMenu', 'userInfo']),
       ...mapGetters(['isLogin', 'username', 'nickname']),
       layout () {
         return this.$route.meta.layout
@@ -115,8 +116,6 @@ import { getCookie } from '@/utils/common'
       handleInfo () {
         this.$router.push('/personal')
       }
-    },
-    mounted () {
     }
   }
 </script>
@@ -217,6 +216,17 @@ import { getCookie } from '@/utils/common'
       }
     }
   }
+}
+.personal-photo {
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  margin-right:5px;
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #eee;
 }
 </style>
 

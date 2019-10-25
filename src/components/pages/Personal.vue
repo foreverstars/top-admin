@@ -1,14 +1,18 @@
 <template>
   <div class="home-content">
     <Form ref="formInline" :model="formInline" :rules="ruleInline" :label-width="80">
-      <!-- <FormItem prop="photo" label="头像">
-        <div class="personal-photo"></div>
+      <FormItem prop="photo" label="头像">
+        <div v-if="userInfo.photo" class="personal-photo" v-bind:style="{ backgroundImage: 'url(' + userInfo.photo + ')'}">
+        </div>
+        <div v-else class="personal-no-photo">
+          暂无头像
+        </div>
         <div class="personal-box">
           <p>支持 jpg、png 格式大小 2M 以内的图片</p>
           <Button type="primary" @click="handleUpload">点击上传</Button>
           <input class="hidden" type="file" ref="fileInput" @change="fileChange"/>
         </div>
-      </FormItem> -->
+      </FormItem>
       <FormItem prop="nickname" label="昵称">
           <Input type="text" v-model="formInline.nickname" placeholder="填写" style="width: 300px">
           </Input>
@@ -100,6 +104,14 @@ export default {
   height: 72px;
   background-size: cover;
   background-repeat: no-repeat;
+  background-color: #eee;
+}
+.personal-no-photo {
+  display: inline-block;
+  width: 72px;
+  height: 72px;
+  text-align: center;
+  line-height: 72px;
   background-color: #eee;
 }
 .personal-box {
