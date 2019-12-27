@@ -80,12 +80,13 @@ const store = new Vuex.Store({
     },
 
     getUserInfo ({state, commit}) {
+      if (!state.userInfo.id) {
+        return
+      }
       axios.post(Api.getUserInfo, {
         id: state.userInfo.id
       }).then(res => {
-        if (res.data.code === 0) {
-          commit('LOGIN', res.data.data);
-        }
+        commit('LOGIN', res.data);
       })
     },
 

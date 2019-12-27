@@ -47,7 +47,6 @@ export default {
       const id = row._id
       this.$router.push({ name: 'Detail', params: { id } })
     },
-
     // formatName (val) {
     //   return this.blogTypes.find(v => v.type === val) ? this.blogTypes.find(v => v.type === val).name : ''
     // }

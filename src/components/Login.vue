@@ -1,7 +1,7 @@
 <template>
   <div class="register">
     <div class="register-logo">
-      <router-link to="/home">月星辰</router-link>
+      <router-link to="/home">星辰</router-link>
     </div>
     <div class="register-info">
       <div class="register-info-l">
@@ -65,15 +65,13 @@ import { mapActions, mapMutations } from 'vuex'
               username: this.formInline.username,
               password: this.formInline.password
             }).then((res) => {
-              if (res.data.code === 0) {
-                this.$Message.success(res.data.message)
-                this.LOGIN(res.data.data)
-                this.$router.push({
-                  path: '/home'
-                })
-              } else {
-                this.$Message.error(res.data.message)
-              }
+              this.$Message.success(res.message)
+              this.LOGIN(res.data)
+              this.$router.push({
+                path: '/home'
+              })
+            }).catch(()=>{
+              
             })
           } else {
             return false

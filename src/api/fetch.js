@@ -12,33 +12,36 @@ Axios.defaults.timeout = 10000
 // http request 拦截器
 
 // http response 拦截器 
-/*
-axios.interceptors.response.use(
+Axios.interceptors.response.use(
   response => {
-    const data = response.data
-    switch (data.code + '') {
-      case '0':
-        return data
-      case '400002':
-        router.replace({
-          path: '/login',
-          query: {redirect: router.currentRoute.fullPath}
-        })
-        Message.error({message: data.message})
-        break
-      default:
-        Message.error({message: data.message})
+    const data = response.data;
+    if (data.code == '0') {
+      return data;
+    } else {
+      Message.error({message: 'data.message'})
+      return Promise.reject(data);
     }
-
-    let err = new Error(data.message)
-    err.data = data
-    err.response = response 
-    throw err
+    // if (data.code == '0') {
+    //   return data;
+    // } else if (data.code == '5') {
+    //   Message.error({message: data.message})
+    //   router.replace({
+    //     path: '/login',
+    //     query: {redirect: router.currentRoute.fullPath}
+    //   })
+    //   return false
+    // } else {
+    //   Message.error({message: data.message})
+    //   return Promise.reject(data);
+    // }
+    // router.replace({
+    //   path: '/login',
+    //   query: {redirect: router.currentRoute.fullPath}
+    // })
   },
   err => {
     return Promise.reject(err)
   }
 )
-*/
 export default Axios
 

@@ -27,11 +27,7 @@ export default {
     this.getTypeList({
       type: 'reading'
     }).then(res => {
-      if (res.data.code === 0) {
-        this.list = res.data.data
-      } else {
-
-      }
+      this.list = res.data || []
     })
   }
 }

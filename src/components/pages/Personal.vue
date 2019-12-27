@@ -22,7 +22,7 @@
           </Input>
       </FormItem>
       <FormItem>
-          <Button type="primary" @click="handleSubmit('formInline')">保存</Button>
+          <Button disabled type="primary" @click="handleSubmit('formInline')">保存</Button>
           <span class="tips">头像设置等功能敬请期待!</span>
       </FormItem>
     </Form>
@@ -50,6 +50,11 @@ export default {
   },
   computed: {
      ...mapState(['userInfo']),
+  },
+  watch: {
+    "userInfo.nickname": function(nv, ov){
+      this.formInline.nickname = nv
+    }
   },
   methods: {
     ...mapActions(['updatePersonal', 'uploadPhoto']),

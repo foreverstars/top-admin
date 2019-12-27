@@ -1,7 +1,7 @@
 <template>
   <div class="register">
     <div class="register-logo">
-      <router-link to="/home">月星辰</router-link>
+      <router-link to="/home">星辰</router-link>
     </div>
     <div class="register-info">
       <div class="register-info-l">
@@ -72,12 +72,8 @@ export default {
             username: this.formInline.user,
             password: this.formInline.password
           }).then((res) => {
-            if (res.data.code === 0) {
-              this.$Message.success(res.data.message)
+              this.$Message.success(res.message)
               this.$router.push({path: '/login'})
-            } else {
-              this.$Message.error(res.data.message)
-            }
           })
         } else {
           return false

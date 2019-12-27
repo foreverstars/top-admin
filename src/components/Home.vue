@@ -1,9 +1,8 @@
 <template>
     <div>
-        <!-- <home-photo-wall></home-photo-wall> -->
-        <div class="home-content">
-          <article-list :data="list"></article-list>
-        </div >
+      <div class="home-content">
+        <article-list :data="list"></article-list>
+      </div >
     </div> 
 </template>
 
@@ -29,11 +28,7 @@
     },
     created () {
       this.getHomeList().then(res => {
-        if (res.data.code === 0) {
-          this.list = res.data.data
-        } else {
-
-        }
+        this.list = res.data || []
       })
     }
   }
