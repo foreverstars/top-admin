@@ -14,7 +14,7 @@
     "babel-plugin-import": "^1.6.3",
     "iview": "^3.1.1-rc.1",
     "moment": "^2.22.2",
-    "qs": "^6.9.0",
+    "qs": "^6.9.7",
     "ueditor": "^1.2.3",
     "vue": "^2.5.2",
     "vue-code-diff": "0.0.4",
